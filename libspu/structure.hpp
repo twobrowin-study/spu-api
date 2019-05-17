@@ -52,6 +52,7 @@ private:
 
 public:
   Structure(FieldsLength<NameT> key_length) : base(), key_len(key_length) {}
+  Structure(FieldsLength<NameT> key_length, const BaseStructure& structure) : base(structure), key_len(key_length) {}
 
   Fields<NameT> keyFields()
   {

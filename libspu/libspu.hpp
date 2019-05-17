@@ -38,6 +38,9 @@ struct pair_containter
   key_t    key;
   value_t  value;
   status_t status;
+
+  explicit pair_containter(status_t s=OK) : status(s) {}
+  pair_containter(key_t k, value_t v, status_t s=OK) : key(k), value(v), status(s) {}
 };
 typedef struct pair_containter pair_t;
 

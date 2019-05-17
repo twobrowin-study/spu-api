@@ -40,6 +40,7 @@ namespace SPU
 /* Structure in SPU */
 class BaseStructure
 {
+public:
   struct InsertStruct
   {
     key_t   key;
@@ -55,17 +56,34 @@ private:
 public:
   BaseStructure   ();
   ~BaseStructure  ();
-  u32 get_power   ();
-  status_t insert (key_t key, value_t value, flags_t flags = NO_FLAGS);
+  virtual u32 get_power   ();
+  /// выполняет поиск значения, связанного с ключом
+  virtual status_t insert (key_t key, value_t value, flags_t flags = NO_FLAGS);
   status_t insert (InsertVector insert_vector, flags_t flags = NO_FLAGS);
-  status_t del    (key_t key, flags_t flags = NO_FLAGS);
-  pair_t   search (key_t key, flags_t flags = P_FLAG);
-  pair_t   min    (flags_t flags = P_FLAG);
-  pair_t   max    (flags_t flags = P_FLAG);
-  pair_t   next   (key_t key, flags_t flags = P_FLAG);
-  pair_t   prev   (key_t key, flags_t flags = P_FLAG);
-  pair_t   nsm    (key_t key, flags_t flags = P_FLAG);
-  pair_t   ngr    (key_t key, flags_t flags = P_FLAG);
+  /// выполняет поиск указанного ключа и удаляет его из структуры данных
+  virtual status_t del (key_t key, flags_t flags = NO_FLAGS);
+  /// выполняет поиск значения, связанного с ключом
+  virtual pair_t search (key_t key, flags_t flags = P_FLAG);
+  /// ищет первый ключ в структуре данных
+  virtual pair_t min (flags_t flags = P_FLAG);
+  /// ищет последний ключ в структуре данных
+  virtual pair_t max (flags_t flags = P_FLAG);
+  /// находит соседний (следующий) ключ в структуре данных относительно переданного ключа.
+  /// В связи с тем, что исходный ключ должен обязательно присутствовать в
+  /// структуре данных, операции NEXT отличаются от NSM
+  virtual pair_t next (key_t key, flags_t flags = P_FLAG);
+  /// находит соседний (предыдущий) ключ в структуре данных относительно переданного ключа.
+  /// В связи с тем, что исходный ключ должен обязательно присутствовать в
+  /// структуре данных, операции PREV отличаются от NGR
+  virtual pair_t prev (key_t key, flags_t flags = P_FLAG);
+  /// выполняет поиск соседнего ключа, который меньше заданного и возвращает его значение.
+  /// Операции могут быть использованы для эвристических вычислений,
+  /// где интерполяция данных используется вместо точных вычислений (например, кластеризация или агрегация).
+  virtual pair_t nsm (key_t key, flags_t flags = P_FLAG);
+  /// выполняет поиск соседнего ключа, который больше заданного и возвращает его значение.
+  /// Операции могут быть использованы для эвристических вычислений,
+  /// где интерполяция данных используется вместо точных вычислений (например, кластеризация или агрегация).
+  virtual pair_t ngr (key_t key, flags_t flags = P_FLAG);
 };
 
 
