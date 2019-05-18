@@ -206,6 +206,13 @@ struct gsid_container
 typedef struct gsid_container gsid_t;
 
 
+typedef unsigned int size_t;
+
+
+#define arraySize(a) (sizeof(a) / sizeof((a)[0]))
+#define containerSize(a) (sizeof(a) / sizeof(a.cont[0]))
+
+
 /***************************************
   Command formats
 ***************************************/

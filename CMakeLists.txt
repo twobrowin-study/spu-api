@@ -11,19 +11,19 @@ add_library(
         spu-api STATIC
         spu.h
         libspu/spu.h
-        libspu/base_structure.hpp
-        libspu/data_container_operators.hpp
+        libspu/base_structure.h
+        libspu/data_container_operators.h
         libspu/fields.hpp
         libspu/fields_containers.hpp
         libspu/fileops.hpp
-        libspu/libspu.hpp
+        libspu/libspu.h
         libspu/structure.hpp
         libspu/errors/could_not_create_structure.hpp
         libspu/errors/did_not_found_by_name.hpp
 
         simulator/Simulator.cpp
         simulator/Simulator.h
-)
+        libspu/libspu.cpp libspu/base_structure.cpp libspu/data_container_operators.cpp)
 
 
 set(SOURCE_EXE simulator/test.cpp)

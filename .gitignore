@@ -18,3 +18,5 @@ dijkstra/dijkstra
 
 # Ignore all doxygen-generated dirs
 doc
+
+.idea

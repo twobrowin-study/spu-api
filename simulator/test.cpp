@@ -15,10 +15,10 @@ int main() {
            { "one",    5 },
            { "two",    7 },
            { "three", 10 }
-    }, simulator);
+    }, reinterpret_cast<BaseStructure &>(simulator));
 
     pair_t pair = str1.search({
-                                      { "one",    27 },
+                                      { "one",    20 },
                                       { "two",    10 },
                                       { "three",  30 }
                               });
