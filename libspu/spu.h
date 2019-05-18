@@ -199,7 +199,10 @@ typedef struct data_container value_t; // In C++ prefered full names
 /* Structure container for SPU key and value data */
 struct gsid_container
 {
-  u32 cont[GSID_WEIGHT];
+    u32 cont[GSID_WEIGHT];
+
+    u32& operator[](u8 idx) { return cont[idx]; }
+    const u32& operator[](u8 idx) const { return cont[idx]; }
 };
 
 /* GSID container hider */

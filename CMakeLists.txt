@@ -23,7 +23,10 @@ add_library(
 
         simulator/Simulator.cpp
         simulator/Simulator.h
-        libspu/libspu.cpp libspu/base_structure.cpp libspu/data_container_operators.cpp)
+        libspu/libspu.cpp
+        libspu/base_structure.cpp
+        libspu/data_container_operators.cpp
+)
 
 
 set(SOURCE_EXE simulator/test.cpp)

@@ -1,138 +1,72 @@
+////
+//// Created by kiryanenko on 18.05.19.
+////
 //
-// Created by kiryanenko on 18.05.19.
-//
-
 #include "data_container_operators.h"
-
+//
 namespace SPU
 {
     /* Check if all u32 from array is equal */
-    template <typename T>
-    bool operator== (const T &c1, const T &c2)
-    {
-        for(u8 i=0; i < arraySize(c1); i++) {
-            if(c1[i] != c2[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
+    bool operator== (const data_t &c1, const data_t &c2) { return cmpContainers(c1, c2) == 0; }
+    bool operator== (const gsid_t &c1, const gsid_t &c2) { return cmpContainers(c1, c2) == 0; }
     /* Check if any u32 from array not equal */
-    template <typename T>
-    bool operator!= (const T &c1, const T &c2)
-    {
-        for(u8 i = 0; i < arraySize(c1); i++) {
-            if (c1[i] != c2[i]) {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    bool operator!= (const data_t &c1, const data_t &c2) { return cmpContainers(c1, c2) != 0; }
+    bool operator!= (const gsid_t &c1, const gsid_t &c2) { return cmpContainers(c1, c2) != 0; }
     /* Check from head if u32 is more then other */
-    template <typename T>
-    bool operator>  (const T &c1, const T &c2)
-    {
-        auto size = arraySize(c1);
-        for(u8 i = 1; i < size+1; i++) {
-            if(c1[size - i] > c2[size - i]) {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    bool operator>  (const data_t &c1, const data_t &c2) { return cmpContainers(c1, c2) > 0; }
+    bool operator>  (const gsid_t &c1, const gsid_t &c2) { return cmpContainers(c1, c2) > 0; }
     /* Use other operators */
-    template <typename T>
-    bool operator>= (const T &c1, const T &c2)
-    {
-        return (c1 > c2) | (c1 == c2);
-    }
-
+    bool operator>= (const data_t &c1, const data_t &c2) { return cmpContainers(c1, c2) >= 0; }
+    bool operator>= (const gsid_t &c1, const gsid_t &c2) { return cmpContainers(c1, c2) >= 0; }
     /* Check from head if all u32 is less then other */
-    template <typename T>
-    bool operator<  (const T &c1, const T &c2)
-    {
-        auto size = arraySize(c1);
-        for (u8 i = 1; i < size + 1; i++) {
-            if(c1[size - i] > c2[size - i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
+    bool operator<  (const data_t &c1, const data_t &c2) { return cmpContainers(c1, c2) < 0; }
+    bool operator<  (const gsid_t &c1, const gsid_t &c2) { return cmpContainers(c1, c2) < 0; }
     /* Use other operators */
-    template <typename T>
-    bool operator<= (const T &c1, const T &c2)
-    {
-        return (c1 < c2) | (c1 == c2);
-    }
-
-
+    bool operator<= (const data_t &c1, const data_t &c2) { return cmpContainers(c1, c2) <= 0; }
+    bool operator<= (const gsid_t &c1, const gsid_t &c2) { return cmpContainers(c1, c2) <= 0; }
     /* Invokes operator for all array */
-    template <typename T>
-    T operator+ (const T &c1, const T &c2)
-    {
-        T ret = {0};
-        for (u8 i = 0; i < arraySize(c1); i++) {
-            ret[i] = c1[i] + c2[i];
-        }
-        return ret;
-    }
-
+    data_t operator+ (const data_t &c1, const data_t &c2) { return addContainers(c1, c2); }
+    gsid_t operator+ (const gsid_t &c1, const gsid_t &c2) { return addContainers(c1, c2); }
+    /* Invokes operator for all array */
+    data_t operator- (const data_t &c1, const data_t &c2) { return subContainers(c1, c2); }
+    gsid_t operator- (const gsid_t &c1, const gsid_t &c2) { return subContainers(c1, c2); }
     /* префиксная версия возвращает значение после инкремента */
-    template <class T>
-    T & operator++ (T &c1)
-    {
-        ++c1[arraySize(c1) - 1];
-        return c1;
-    }
-
+    data_t & operator++(data_t &c1) { return incContainer(c1); }
+    gsid_t & operator++(gsid_t &c1) { return incContainer(c1); }
     /* постфиксная версия возвращает значение до инкремента */
-    template <class T>
-    const T operator++ (T &c1, int)
-    {
+    const data_t operator++ (data_t &c1, int) {
         auto prev = c1;
-        ++c1[arraySize(c1) - 1];
+        incContainer(c1);
         return prev;
     }
-
+    const gsid_t operator++ (gsid_t &c1, int) {
+        auto prev = c1;
+        incContainer(c1);
+        return prev;
+    }
+    /* префиксная версия возвращает значение после декремента */
+    data_t & operator--(data_t &c1) { return incContainer(c1); }
+    gsid_t & operator--(gsid_t &c1) { return incContainer(c1); }
+    /* постфиксная версия возвращает значение до декремента */
+    const data_t operator-- (data_t &c1, int) {
+        auto prev = c1;
+        decContainer(c1);
+        return prev;
+    }
+    const gsid_t operator-- (gsid_t &c1, int) {
+        auto prev = c1;
+        decContainer(c1);
+        return prev;
+    }
     /* Invokes operator for all array */
-    template <typename T>
-    T operator- (const T &c1, const T &c2)
-    {
-        T ret = {0};
-        for (u8 i = 0; i < arraySize(c1); i++) {
-            ret[i] = c1[i] - c2[i];
-        }
-        return ret;
-    }
-
+    data_t operator& (const data_t &c1, const data_t &c2) { return andContainers(c1, c2); }
+    gsid_t operator& (const gsid_t &c1, const gsid_t &c2) { return andContainers(c1, c2); }
     /* Invokes operator for all array */
-    template <typename T>
-    data_t operator& (const T &c1, const T &c2)
-    {
-        data_t ret = {0};
-        for(u8 i=0; i<SPU_WEIGHT; i++)
-        {
-            ret[i] = c1[i] & c2[i];
-        }
-        return ret;
-    }
+    data_t operator| (const data_t &c1, const data_t &c2) { return orContainers(c1, c2); }
+    gsid_t operator| (const gsid_t &c1, const gsid_t &c2) { return orContainers(c1, c2); }
 
-/* Invokes operator for all array */
-    data_t operator| (const data_t &c1, const data_t &c2)
-    {
-        data_t ret = {0};
-        for (u8 i=0; i < arraySize(c1); i++) {
-            ret[i] = c1[i] | c2[i];
-        }
-        return ret;
-    }
 
-/* Iterates and invokes shift with left part */
+    /// Iterates and invokes shift with left part
     data_t operator<< (const data_t &cont, const u8 &shift)
     {
         data_t ret = cont;
@@ -166,7 +100,7 @@ namespace SPU
         return ret;
     }
 
-/* Iterates and invokes shift with left part */
+    /* Iterates and invokes shift with left part */
     data_t operator>> (const data_t &cont, const u8 &shift)
     {
         data_t ret = cont;
@@ -199,6 +133,4 @@ namespace SPU
         }
         return ret;
     }
-
-
 }
