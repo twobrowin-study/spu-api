@@ -39,7 +39,7 @@ struct pair_containter
   value_t  value;
   status_t status;
 
-  explicit pair_containter(status_t s=OK) : status(s) {}
+  pair_containter(status_t s=OK) : status(s) {}
   pair_containter(key_t k, value_t v, status_t s=OK) : key(k), value(v), status(s) {}
 };
 typedef struct pair_containter pair_t;
@@ -64,12 +64,16 @@ public:
   BitFlow(unsigned long data)      { d[0] = (u32)data; d[1] = (u32)(data>>31)>>1; }
   BitFlow(unsigned long long data) { d[0] = (u32)data; d[1] = (u32)(data>>32); }
 
-     BitFlow operator+(BitFlow& other) { return (data_t) *this + (data_t) other; }
-     BitFlow operator-(BitFlow& other) { return (data_t) *this - (data_t) other; }
-        u32& operator[](u8 idx)        { return d[idx]; }
-  const u32& operator[](u8 idx) const  { return d[idx]; }
-             operator bool()           { return (bool) d[0]; }
-             operator u8()             { return (u8) d[0]; }
+  BitFlow operator+(BitFlow& other)     { return (data_t) *this + (data_t) other; }
+  BitFlow operator-(BitFlow& other)     { return (data_t) *this - (data_t) other; }
+  u32& operator[](u8 idx)               { return d[idx]; }
+  const u32& operator[](u8 idx) const   { return d[idx]; }
+  operator bool()                       { return (bool) d[0]; }
+  operator int()                        { return (int) d[0]; }
+  operator unsigned int()               { return (unsigned int) d[0]; }
+  operator short()                      { return (short) d[0]; }
+  operator unsigned short()             { return (unsigned short) d[0]; }
+  operator u8()                         { return (u8) d[0]; }
 };
 
 

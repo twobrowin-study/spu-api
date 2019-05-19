@@ -51,7 +51,7 @@ private:
   FieldsLength<NameT> key_len;
 
 public:
-  explicit Structure(FieldsLength<NameT> key_length) : key_len(key_length) { base(); }
+  explicit Structure(FieldsLength<NameT> key_length) : key_len(key_length) { base = BaseStructure(); }
   Structure(FieldsLength<NameT> key_length, BaseStructure& structure) : base(structure), key_len(key_length) {}
 
   Fields<NameT> keyFields()
@@ -172,7 +172,7 @@ public:
   pair_t ngr      ( BitFlow key, flags_t flags = P_FLAG)                  { return BaseStructure::ngr    ( key, flags); }
 
   /* Mass insert overload */
-  status_t insert(InsertVector insert_vector, flags_t flags = NO_FLAGS)
+  status_t insert(const InsertVector& insert_vector, flags_t flags = NO_FLAGS)
   {
     for(auto ex : insert_vector)
     {
