@@ -54,11 +54,13 @@ private:
   u32 power;                 // Current structure power
 
 public:
-  BaseStructure();
+  explicit BaseStructure(bool initialize=true);
   virtual ~BaseStructure();
 
   gsid_t get_gsid();
   virtual u32 get_power();
+
+  void init();
 
   /// выполняет поиск значения, связанного с ключом
   virtual status_t insert(key_t key, value_t value, flags_t flags = NO_FLAGS);

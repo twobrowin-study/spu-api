@@ -11,15 +11,11 @@ namespace SPU
     ***************************************/
 
     /* Constructor from nothing */
-    BaseStructure::BaseStructure() :
+    BaseStructure::BaseStructure(bool initialize) :
             fops("/dev/" SPU_CDEV_NAME), power(0)
     {
-        adds_rslt_t result = createStructure();
-        if (result.rslt == OK) {
-            /* Create GSID */
-            gsid = result.gsid;
-        } else {
-            throw CouldNotCreateStructure();
+        if (initialize) {
+            init();
         }
     }
 
@@ -28,6 +24,16 @@ namespace SPU
     {
         dels_rslt_t result = deleteStructure();
         power = result.power;
+    }
+
+    void BaseStructure::init() {
+        adds_rslt_t result = createStructure();
+        if (result.rslt == OK) {
+            /* Create GSID */
+            gsid = result.gsid;
+        } else {
+            throw CouldNotCreateStructure();
+        }
     }
 
     adds_rslt_t BaseStructure::createStructure() {
@@ -46,6 +52,7 @@ namespace SPU
         /* Execute DELS command */
         return fops.execute<dels_cmd_t, dels_rslt_t>(dels);
     }
+
 
     /* Insert command execution */
     u32 BaseStructure::get_power()

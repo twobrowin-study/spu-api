@@ -47,11 +47,11 @@ class Structure
   using InsertVector = std::vector<InsertStruct>;
 
 private:
-  BaseStructure base;
+  BaseStructure &base;
   FieldsLength<NameT> key_len;
 
 public:
-  Structure(FieldsLength<NameT> key_length) : base(), key_len(key_length) {}
+  explicit Structure(FieldsLength<NameT> key_length) : key_len(key_length) { base(); }
   Structure(FieldsLength<NameT> key_length, BaseStructure& structure) : base(structure), key_len(key_length) {}
 
   Fields<NameT> keyFields()

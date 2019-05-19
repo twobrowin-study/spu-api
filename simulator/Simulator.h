@@ -15,14 +15,15 @@ namespace SPU
 {
 
     class Simulator : public BaseStructure {
-        map<key_t, value_t> *_data{};
+        map<key_t, value_t> *_data = nullptr;
 
     public:
-        Simulator();
+        explicit Simulator(bool initialize=true);
         Simulator(Simulator &obj);
         ~Simulator() override;
 
         u32 get_power() override;
+
         status_t insert(key_t key, value_t value, flags_t flags = NO_FLAGS) override;
         status_t del(key_t key, flags_t flags = NO_FLAGS) override;
         pair_t search(key_t key, flags_t flags = P_FLAG) override;

@@ -11,14 +11,14 @@ namespace SPU
     map<gsid_t, map<key_t, value_t> *> globalStructures;
 
 
-    Simulator::Simulator() : BaseStructure() {
-        auto gsid = get_gsid();
-        auto it = globalStructures.find(gsid);
-        if (it != globalStructures.end()) {
-            _data = it->second;
-        } else {
-            _data = new map<key_t, value_t>();
-            globalStructures[gsid] = _data;
+    Simulator::Simulator(bool initialize) : BaseStructure(false) {
+        if (initialize) {
+            init();
+            auto gsid = get_gsid();
+            auto it = globalStructures.find(gsid);
+            if (it != globalStructures.end()) {
+                _data = it->second;
+            }
         }
     }
 
@@ -26,9 +26,12 @@ namespace SPU
 
     Simulator::~Simulator() = default;
 
-
     adds_rslt_t Simulator::createStructure() {
         auto gsid = getNextGsid();
+
+        _data = new map<key_t, value_t>();
+        globalStructures[gsid] = _data;
+
         adds_rslt_t res;
         res.gsid = gsid;
         res.rslt = OK;
@@ -46,7 +49,7 @@ namespace SPU
     }
 
     status_t Simulator::insert(key_t key, value_t value, flags_t flags) {
-        (*_data)[key] = value;
+        _data->emplace(key, value);
         return OK;
     }
 
