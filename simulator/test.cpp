@@ -46,9 +46,25 @@ int main() {
   /// Ecли объявлен SPU_SIMULATOR, то необязательно указывать симулятор в конструкторе Structure
 #ifdef SPU_SIMULATOR
   Structure<> str2;
-  str2.insert(2, 3);
+  str2.insert(2, 120);
+  str2.insert(1, 10);
+  str2.insert(5, 50);
+  str2.insert(4, 40);
+
   pair = str2.search(2);
   int val2 = (BitFlow&) pair.value;
   cout << "Value for struct 2: " << val2 << endl;
+
+  pair_t min = str2.min();
+  pair_t max = str2.max();
+  cout << "Min: <" <<  to_string(min) << "> Max: <" << to_string(max) << ">" << endl;
+
+  pair_t next = str2.next(1);
+  pair_t prev = str2.prev(5);
+  cout << "Next: <" <<  to_string(next) << "> Prev: <" << to_string(prev) << ">" << endl;
+
+  pair_t nsm = str2.nsm(3);
+  pair_t ngr = str2.ngr(3);
+  cout << "NSM: <" <<  to_string(nsm) << "> NGR: <" << to_string(ngr) << ">" << endl;
 #endif
 }

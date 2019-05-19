@@ -194,6 +194,8 @@ public:
   pair_t prev     ( BitFlow key, flags_t flags = P_FLAG)                  { return base->prev   ( key, flags); }
   pair_t nsm      ( BitFlow key, flags_t flags = P_FLAG)                  { return base->nsm    ( key, flags); }
   pair_t ngr      ( BitFlow key, flags_t flags = P_FLAG)                  { return base->ngr    ( key, flags); }
+  pair_t min(flags_t flags = P_FLAG)                                      { return base->min(flags); }
+  pair_t max(flags_t flags = P_FLAG)                                      { return base->max(flags); }
 
   /* Mass insert overload */
   status_t insert(const InsertVector& insert_vector, flags_t flags = NO_FLAGS)
