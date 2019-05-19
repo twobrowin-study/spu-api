@@ -6,12 +6,14 @@
 #include "../libspu/structure.hpp"
 #include "Simulator.h"
 
+/// Объявление SPU_SIMULATOR определяет использовать ли симулятор SPU по умолчанию
+#define SPU_SIMULATOR
+
 using namespace std;
 using namespace SPU;
 
 int main() {
-  Simulator simulator;
-  auto &baseStructure = (BaseStructure&) simulator;
+  BaseStructure *baseStructure = new Simulator;
   Structure<string> str1({
                              { "one",    5 },
                              { "two",    7 },
@@ -38,5 +40,15 @@ int main() {
   cout << "Full pair is " << to_string(pair) << endl;
 
   int b = (BitFlow&) pair.value;
-  cout << "Value " << b;
+  cout << "Value " << b << endl;
+
+
+  /// Ecли объявлен SPU_SIMULATOR, то необязательно указывать симулятор в конструкторе Structure
+#ifdef SPU_SIMULATOR
+  Structure<> str2;
+  str2.insert(2, 3);
+  pair = str2.search(2);
+  int val2 = (BitFlow&) pair.value;
+  cout << "Value for struct 2: " << val2 << endl;
+#endif
 }
