@@ -26,7 +26,7 @@ add_library(
         libspu/libspu.cpp
         libspu/base_structure.cpp
         libspu/data_container_operators.cpp
-)
+        libspu/extern_value.h libspu/extern_value.cpp)
 
 
 set(SOURCE_EXE simulator/test.cpp)

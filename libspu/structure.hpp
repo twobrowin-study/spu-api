@@ -27,6 +27,7 @@
 #include "libspu.h"
 #include "fields.hpp"
 #include "base_structure.h"
+#include "extern_value.h"
 
 #ifdef SPU_SIMULATOR
 #include "../simulator/Simulator.h"
@@ -83,6 +84,8 @@ public:
 
   /* Insert */
   status_t insert(BitFlow key, BitFlow value, flags_t flags = NO_FLAGS) { return base->insert(key, (value_t) value, flags); }
+  status_t insert(BitFlow key, BaseExternValue value, flags_t flags = NO_FLAGS) { return base->insert(key, value.get_id(), flags); }
+  status_t insert(FieldsData<NameT> key, BaseExternValue value, flags_t flags = NO_FLAGS) { return insert(key, value.get_id(), flags); }
   status_t insert(FieldsData<NameT> key_data, BitFlow value, flags_t flags = NO_FLAGS)
   {
     Fields<NameT> key(key_len, key_data);

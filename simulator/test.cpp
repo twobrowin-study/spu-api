@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "../libspu/structure.hpp"
+#include "../libspu/extern_value.h"
 #include "Simulator.h"
 
 /// Объявление SPU_SIMULATOR определяет использовать ли симулятор SPU по умолчанию
@@ -41,6 +42,15 @@ int main() {
 
   int b = (BitFlow&) pair.value;
   cout << "Value " << b << endl;
+
+
+  string string1 = "This string stored at hash map. In SPU stored id for a string";
+  BaseExternValue extern_val = HashMapExternValue<string>(string1);
+  str1.insert({
+                  { "one",    27 },
+                  { "two",    10 },
+                  { "three",  30 }
+              }, extern_val);
 
 
   /// Ecли объявлен SPU_SIMULATOR, то необязательно указывать симулятор в конструкторе Structure
