@@ -9,7 +9,7 @@ namespace SPU
   std::map<gsid_t, std::map<key_t, BaseExternValue>> structure_values;
 
 
-  void BaseExternValue::insert(SPU::gsid_t gsid, SPU::key_t key, SPU::BaseExternValue &value)
+  void BaseExternValue::spu_insert(SPU::gsid_t gsid, SPU::key_t key, SPU::BaseExternValue &value)
   {
     auto it = structure_values.find(gsid);
     if (it == structure_values.end()) {
@@ -19,7 +19,7 @@ namespace SPU
     structure_values[gsid][key] = value;
   }
 
-  void BaseExternValue::remove(gsid_t gsid, key_t key) {
+  void BaseExternValue::spu_remove(gsid_t gsid, key_t key) {
     auto it = structure_values.find(gsid);
     if (it == structure_values.end()) {
       return;

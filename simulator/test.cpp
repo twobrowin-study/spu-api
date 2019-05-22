@@ -13,6 +13,12 @@
 using namespace std;
 using namespace SPU;
 
+struct Point {
+  float x;
+  float y;
+  float z;
+};
+
 int main() {
   BaseStructure *baseStructure = new Simulator;
   Structure<string> str1({
@@ -47,11 +53,39 @@ int main() {
   string string1 = "This string stored at hash map. In SPU stored id for a string";
   BaseExternValue extern_val = HashMapExternValue<string>(string1);
   str1.insert({
-                  { "one",    27 },
-                  { "two",    10 },
-                  { "three",  30 }
+                  { "one",    1 },
+                  { "two",    1 },
+                  { "three",  1 }
               }, extern_val);
+  pair = str1.search({
+                         { "one",    1 },
+                         { "two",    1 },
+                         { "three",  1 }
+                     });
+  string res_str = (HashMapExternValue<string>) pair.value;
+  cout << res_str << endl;
 
+  /// C помощью HashMapExternValue можно хранить любые структуры.
+  /// Операторы << и >> делают тоже, что и методы insert и get_value
+  Point p = {1.5, 2.3, 3.7};
+  HashMapExternValue<Point> point_ext;
+  point_ext << p;
+  str1.insert({
+                  { "one",   2 },
+                  { "two",   2 },
+                  { "three", 2 }
+              }, point_ext);
+  pair = str1.search({
+                               { "one",    2 },
+                               { "two",    2 },
+                               { "three",  2 }
+                           });
+  if (pair.status == OK) {
+    point_ext << pair;
+    Point p_res;
+    point_ext >> p;
+    cout << "Point struct X=" << p.x << " Y=" << p.y << " Z=" << p.z << endl;
+  }
 
   /// Ecли объявлен SPU_SIMULATOR, то необязательно указывать симулятор в конструкторе Structure
 #ifdef SPU_SIMULATOR
