@@ -30,7 +30,7 @@ namespace SPU
     static void spu_remove(gsid_t gsid, key_t key);
   };
 
-  extern std::map<gsid_t, std::map<key_t, BaseExternValue>> structure_values;
+  extern std::map<gsid_t, std::map<key_t, BaseExternValue>> structure_values; // TODO:  unordered_map
 
 
   /// Используя данный класс в качестве значений можно использовать крупные структуры (например строки)
@@ -42,10 +42,10 @@ namespace SPU
     ExternValue(value_t id) : BaseExternValue(id) {}
 
     /// Возвращает структуру соответствующую id
-    virtual T & get_value() = 0;
-    virtual void insert(T value) = 0;
+    virtual T & get() = 0;
+    virtual void set(T value) = 0;
 
-    operator T() { return get_value(); }
+    operator T() { return get(); }
     ExternValue& operator<< (value_t id) {
       set_id(id);
       return *this;
@@ -55,10 +55,10 @@ namespace SPU
       return *this;
     }
     ExternValue& operator<< (T value) {
-      insert(value);
+      set(value);
       return *this;
     }
-    T& operator>> (T value) { return get_value(); }
+    T& operator>> (T value) { return get(); }
   };
 
 
@@ -66,7 +66,7 @@ namespace SPU
   /// В SPU будет храниться идентификатор на них, а данные будут храниться в оперативке
   template <class T>
   class HashMapExternValue : public ExternValue<T> {
-    static std::map<value_t, T> _data;
+    static std::map<value_t, T> _data; // TODO:  unordered_map
 
   public:
     HashMapExternValue() : ExternValue<T>() {}
@@ -75,13 +75,13 @@ namespace SPU
     /// Данный констуктор инициализирует id. Используется при получении данных из SPU.
     HashMapExternValue(pair_t pair) : ExternValue<T>(pair.value) {}
     /// Данный констуктор должен записать данные.
-    HashMapExternValue(T value) : ExternValue<T>() { insert(value); }
-    T & get_value() override { return _data[BaseExternValue::get_id()]; }
-    void insert(T value) override { _data[BaseExternValue::get_id()] = value; }
+    HashMapExternValue(T value) : ExternValue<T>() { set(value); }
+    T & get() override { return _data[BaseExternValue::get_id()]; }
+    void set(T value) override { _data[BaseExternValue::get_id()] = value; }
   };
 
   template <class T>
-  std::map<value_t, T> HashMapExternValue<T>::_data = std::map<value_t, T>();
+  std::map<value_t, T> HashMapExternValue<T>::_data = std::map<value_t, T>(); // TODO:  unordered_map
 }
 
 #endif //GRAPH_API_EXTERN_VALUE_H

@@ -46,8 +46,20 @@ int main() {
   cout << "Found: " << val0 << " " << val1 << endl;
   cout << "Full pair is " << to_string(pair) << endl;
 
-  int b = (BitFlow&) pair.value;
-  cout << "Value " << b << endl;
+
+
+  str1.insert({
+                  { "one",    3 },
+                  { "two",    3 },
+                  { "three",  3 }
+              }, 1.123);
+  pair = str1.search({
+                         { "one",    3 },
+                         { "two",    3 },
+                         { "three",  3 }
+                     });
+  double fval = (BitFlow&) pair.value;
+  cout << "Double value: " << fval << endl;
 
 
   string string1 = "This string stored at hash map. In SPU stored id for a string";
@@ -66,7 +78,7 @@ int main() {
   cout << res_str << endl;
 
   /// C помощью HashMapExternValue можно хранить любые структуры.
-  /// Операторы << и >> делают тоже, что и методы insert и get_value
+  /// Операторы << и >> делают тоже, что и методы set и get
   Point p = {1.5, 2.3, 3.7};
   HashMapExternValue<Point> point_ext;
   point_ext << p;
@@ -87,6 +99,7 @@ int main() {
     cout << "Point struct X=" << p.x << " Y=" << p.y << " Z=" << p.z << endl;
   }
 
+
   /// Ecли объявлен SPU_SIMULATOR, то необязательно указывать симулятор в конструкторе Structure
 #ifdef SPU_SIMULATOR
   Structure<> str2;
@@ -96,7 +109,7 @@ int main() {
   str2.insert(4, 40);
 
   pair = str2.search(2);
-  int val2 = (BitFlow&) pair.value;
+  long long val2 = (BitFlow&) pair.value;
   cout << "Value for struct 2: " << val2 << endl;
 
   pair_t min = str2.min();

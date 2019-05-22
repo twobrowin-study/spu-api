@@ -6,7 +6,7 @@
 
 namespace SPU
 {
-  std::map<gsid_t, std::map<key_t, BaseExternValue>> structure_values;
+  std::map<gsid_t, std::map<key_t, BaseExternValue>> structure_values; // TODO:  unordered_map
 
 
   void BaseExternValue::spu_insert(SPU::gsid_t gsid, SPU::key_t key, SPU::BaseExternValue &value)
