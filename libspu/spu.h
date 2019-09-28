@@ -200,10 +200,22 @@ typedef struct data_container value_t; // In C++ prefered full names
 struct gsid_container
 {
   u32 cont[GSID_WEIGHT];
+
+  u32& operator[](u8 idx) { return cont[idx]; }
+  const u32& operator[](u8 idx) const { return cont[idx]; }
+
+  operator u32() { return cont[0]; }
 };
 
 /* GSID container hider */
 typedef struct gsid_container gsid_t;
+
+
+typedef unsigned int size_t;
+
+
+#define arraySize(a) (sizeof(a) / sizeof((a)[0]))
+#define containerSize(a) (sizeof(a) / sizeof(a.cont[0]))
 
 
 /***************************************

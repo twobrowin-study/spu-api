@@ -21,7 +21,7 @@
 #ifndef FIELDS_CONTAINERS_HPP
 #define FIELDS_CONTAINERS_HPP
 
-#include "libspu.hpp"
+#include "libspu.h"
 #include "errors/did_not_found_by_name.hpp"
 
 #include <vector>

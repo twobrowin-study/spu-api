@@ -21,7 +21,7 @@
 #ifndef FIELDS_HPP
 #define FIELDS_HPP
 
-#include "libspu.hpp"
+#include "libspu.h"
 #include "fields_containers.hpp"
 
 namespace SPU
