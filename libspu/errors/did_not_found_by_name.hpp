@@ -3,6 +3,7 @@
         - error from found_by_name function in fields data container classes
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
+                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -33,9 +34,9 @@ struct DidNotFoundDataByName : public std::exception
 {
   std::string str_what;
 
-  DidNotFoundDataByName(std::string class_meaning, NameT exception_field_name) : std::exception()
+  DidNotFoundDataByName(std::string class_name, NameT exception_field_name) : std::exception()
   {
-    str_what = "Did not found '" + class_meaning + "' with name " + str_what_field_name(exception_field_name);
+    str_what = "SPU::" + class_name + " : Did not found name " + str_what_field_name(exception_field_name);
   }
 
   std::string str_what_field_name(NameT exception_field_name);

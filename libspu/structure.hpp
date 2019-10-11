@@ -4,6 +4,7 @@
         - this is the base interface class in SPU library
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
+                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -24,17 +25,26 @@
 
 #include <vector>
 
-#include "libspu.h"
+#include "libspu.hpp"
 #include "fields.hpp"
-#include "base_structure.h"
-#include "extern_value.h"
+#include "extern_value.hpp"
 
-#ifdef SPU_SIMULATOR
-#include "../simulator/Simulator.h"
-#endif
+/* Including base or simulator */
+#ifndef SPU_SIMULATOR
+#include "base_structure.hpp"
+#else
+#include "simulator.hpp"
+#endif /* SPU_SIMULATOR */
 
 namespace SPU
 {
+
+/* Using base or simulator */
+#ifndef SPU_SIMULATOR
+using BaseStructureClass = BaseStructure;
+#else
+using BaseStructureClass = Simulator;
+#endif /* SPU_SIMULATOR */
 
 /***************************************
   Structure template class declaration
@@ -42,30 +52,21 @@ namespace SPU
 
 /* Template Structure class definition */
 template<typename NameT = void>
-class Structure
+class Structure: public BaseStructureClass
 {
 public:
   struct InsertStruct
   {
     FieldsData<NameT> key_data;
-    BitFlow           value;
+    data_t            value;
   };
   using InsertVector = std::vector<InsertStruct>;
 
 private:
-  BaseStructure *base;
   FieldsLength<NameT> key_len;
 
 public:
-  Structure(FieldsLength<NameT> key_length, BaseStructure *structure= nullptr) : base(structure), key_len(key_length) {
-    if (base == nullptr) {
-#ifndef SPU_SIMULATOR
-      base = new BaseStructure();
-#else
-      base = new Simulator();
-#endif
-    }
-  }
+  Structure(FieldsLength<NameT> key_length) : BaseStructureClass(), key_len(key_length) {}
 
   Fields<NameT> keyFields()
   {
@@ -73,25 +74,34 @@ public:
   }
 
   /*************************************
+    Parent's methods usage
+  *************************************/
+  using BaseStructureClass::insert;
+  using BaseStructureClass::insertVector;
+  using BaseStructureClass::del;
+  using BaseStructureClass::search;
+  using BaseStructureClass::min;
+  using BaseStructureClass::max;
+  using BaseStructureClass::next;
+  using BaseStructureClass::prev;
+  using BaseStructureClass::nsm;
+  using BaseStructureClass::ngr;
+
+
+  /*************************************
     Redefinitions of BaseStructure
     commands with composite key
   *************************************/
 
-  u32 get_power()
-  {
-    return base->get_power();
-  }
-
   /* Insert */
-  status_t insert(BitFlow key, BitFlow value, flags_t flags = NO_FLAGS) { return base->insert(key, (value_t) value, flags); }
-  status_t insert(BitFlow key, BaseExternValue value, flags_t flags = NO_FLAGS) { return base->insert(key, value.get_id(), flags); }
+  status_t insert(data_t key, BaseExternValue value, flags_t flags = NO_FLAGS)            { return insert(key, value.get_id(), flags); }
   status_t insert(FieldsData<NameT> key, BaseExternValue value, flags_t flags = NO_FLAGS) { return insert(key, value.get_id(), flags); }
-  status_t insert(FieldsData<NameT> key_data, BitFlow value, flags_t flags = NO_FLAGS)
+  status_t insert(FieldsData<NameT> key_data, data_t value, flags_t flags = NO_FLAGS)
   {
     Fields<NameT> key(key_len, key_data);
-    return insert(key, value, flags);
+    return BaseStructureClass::insert(key, value, flags);
   }
-  status_t insert(InsertVector insert_vector, flags_t flags = NO_FLAGS)
+  status_t insertVector(InsertVector insert_vector, flags_t flags = NO_FLAGS)
   {
     for(auto ex : insert_vector)
     {
@@ -105,115 +115,54 @@ public:
   }
 
   /* Delete */
-  status_t del(BitFlow key, flags_t flags = NO_FLAGS) { return base->del(key, flags); }
   status_t del(FieldsData<NameT> key_data, flags_t flags = NO_FLAGS)
   {
     Fields<NameT> key(key_len, key_data);
-    return del(key, flags);
+    return BaseStructureClass::del(key, flags);
   }
 
   /* Search */
-  pair_t search(BitFlow key, flags_t flags = P_FLAG) { return base->search(key, flags); }
   pair_t search(FieldsData<NameT> key_data, flags_t flags = P_FLAG)
   {
     Fields<NameT> key(key_len, key_data);
-    return search(key, flags);
+    return BaseStructureClass::search(key, flags);
   }
 
-  /* Min and Max */
-  pair_t min(flags_t flags = P_FLAG) { return base->min(flags); }
-  pair_t max(flags_t flags = P_FLAG) { return base->max(flags); }
-
   /* Next */
-  pair_t next(BitFlow key, flags_t flags = P_FLAG) { return base->next(key, flags); }
   pair_t next(FieldsData<NameT> key_data, flags_t flags = P_FLAG)
   {
     Fields<NameT> key(key_len, key_data);
-    return next(key, flags);
+    return BaseStructureClass::next(key, flags);
   }
 
   /* Prev */
-  pair_t prev(BitFlow key, flags_t flags = P_FLAG) { return base->prev(key, flags); }
   pair_t prev(FieldsData<NameT> key_data, flags_t flags = P_FLAG)
   {
     Fields<NameT> key(key_len, key_data);
-    return prev(key, flags);
+    return BaseStructureClass::prev(key, flags);
   }
 
   /* NSM */
-  pair_t nsm(BitFlow key, flags_t flags = P_FLAG) { return base->nsm(key, flags); }
   pair_t nsm(FieldsData<NameT> key_data, flags_t flags = P_FLAG)
   {
     Fields<NameT> key(key_len, key_data);
-    return nsm(key, flags);
+    return BaseStructureClass::nsm(key, flags);
   }
 
   /* NGR */
-  pair_t ngr(BitFlow key, flags_t flags = P_FLAG) { return base->ngr(key, flags); }
   pair_t ngr(FieldsData<NameT> key_data, flags_t flags = P_FLAG)
   {
     Fields<NameT> key(key_len, key_data);
-    return ngr(key, flags);
+    return BaseStructureClass::ngr(key, flags);
   }
-
 };
 
 
 /***************************************
   Structure special class declaration
 ***************************************/
-
-/* Structure class void specialization witch is only BaseStructure son */
 template<>
-class Structure<void>
-{
-public:
-  struct InsertStruct
-  {
-    BitFlow key;
-    BitFlow value;
-  };
-  using InsertVector = std::vector<InsertStruct>;
-
-private:
-  BaseStructure *base;
-
-public:
-  explicit Structure(BaseStructure* structure=nullptr) : base(structure) {
-    if (base == nullptr) {
-#ifndef SPU_SIMULATOR
-      base = new BaseStructure();
-#else
-      base = new Simulator();
-#endif
-    }
-  }
-
-  /* BaseStructure overload with BitFlow insertion */
-  status_t insert ( BitFlow key, BitFlow value, flags_t flags = NO_FLAGS) { return base->insert ( key, value, flags); }
-  status_t del    ( BitFlow key, flags_t flags = NO_FLAGS)                { return base->del    ( key, flags); }
-  pair_t search   ( BitFlow key, flags_t flags = P_FLAG)                  { return base->search ( key, flags); }
-  pair_t next     ( BitFlow key, flags_t flags = P_FLAG)                  { return base->next   ( key, flags); }
-  pair_t prev     ( BitFlow key, flags_t flags = P_FLAG)                  { return base->prev   ( key, flags); }
-  pair_t nsm      ( BitFlow key, flags_t flags = P_FLAG)                  { return base->nsm    ( key, flags); }
-  pair_t ngr      ( BitFlow key, flags_t flags = P_FLAG)                  { return base->ngr    ( key, flags); }
-  pair_t min(flags_t flags = P_FLAG)                                      { return base->min(flags); }
-  pair_t max(flags_t flags = P_FLAG)                                      { return base->max(flags); }
-
-  /* Mass insert overload */
-  status_t insert(const InsertVector& insert_vector, flags_t flags = NO_FLAGS)
-  {
-    for(auto ex : insert_vector)
-    {
-      status_t status = insert(ex.key, ex.value, flags);
-      if(status != OK)
-      {
-        return status;
-      }
-    }
-    return OK;
-  }
-};
+class Structure<void> : public BaseStructureClass {};
 
 } /* namespace SPU */
 

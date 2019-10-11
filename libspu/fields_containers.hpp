@@ -3,6 +3,7 @@
         - presents fields_length and fields_data classes
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
+                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -21,7 +22,7 @@
 #ifndef FIELDS_CONTAINERS_HPP
 #define FIELDS_CONTAINERS_HPP
 
-#include "libspu.h"
+#include "libspu.hpp"
 #include "errors/did_not_found_by_name.hpp"
 
 #include <vector>
@@ -29,23 +30,27 @@
 namespace SPU
 {
 
-/* Fields class declaration */
-template <typename NameT>
-class Fields;
-
 /* Fields abstract data container */
-template <typename NameT = u8, typename ContentT = u32>
+template <typename NameT, typename ContentT>
 class FieldsContainer
 {
-  /* Friend */
-  friend class Fields<NameT>;
-
 protected:
   /* Content types */
   struct ContentStruct
   {
-    NameT    name;
-    ContentT cont;
+    NameT name;
+
+    /* Aliases */
+    union
+    {
+      ContentT cont;
+      ContentT data;
+      ContentT length;
+    };
+
+    /* Constructors */
+    ContentStruct() {}
+    ContentStruct(NameT c_name, ContentT c_cont) : name(c_name), cont(c_cont) {}
   };
   using ContentVector = std::vector<ContentStruct>;
 
@@ -64,7 +69,7 @@ protected:
 
 private:
   ContentVector cont_vec; // Content vector
-  std::string ClName; // Class name to inform DidNotFoundDataByName error
+  std::string ClName;     // Class name to inform DidNotFoundDataByName error
 
 public: /* Constructors */
   FieldsContainer(std::string ClassName) : cont_vec({0}), ClName(ClassName) {}
@@ -74,6 +79,16 @@ public: /* Constructors */
 
   FieldsContainer(std::initializer_list<ContentStruct> content_initializer_list, std::string ClassName) :
     cont_vec(content_initializer_list), ClName(ClassName) {}
+
+  /* Friends functions used int foreach cycle */
+  friend typename ContentVector::iterator begin(FieldsContainer<NameT, ContentT>& container) { return container.cont_vec.begin(); }
+  friend typename ContentVector::iterator end(FieldsContainer<NameT, ContentT>& container)   { return container.cont_vec.end();   }
+
+  /* Push to add data */
+  inline void push(ContentStruct addict)
+  {
+    cont_vec.push_back(addict);
+  }
 };
 
 
@@ -82,57 +97,50 @@ public: /* Constructors */
 template <typename NameT = u8>
 class FieldsLength : public FieldsContainer<NameT, u8>
 {
-  /* Friend */
-  friend class Fields<NameT>;
-  
 private:
   /* Content length types */
   typedef FieldsContainer<NameT, u8> Parent;
   using LengthStruct = typename Parent::ContentStruct;
   using LengthVector = typename Parent::ContentVector;
 
-  /* Mask creator */
-  inline data_t mask(u8& length)
-  {
-    unsigned long long ret = ~( (-1) << length );
-    return BitFlow(ret);
-  }
-
 public:
   /* Constructors */
-  FieldsLength() : Parent("length") {}
-  FieldsLength(LengthVector length_vector) : Parent(length_vector, "length") {}
-  FieldsLength(std::initializer_list<LengthStruct> length_initializer_list) : Parent(length_initializer_list, "length") {}
+  FieldsLength() : Parent("FieldsLength") {}
+  FieldsLength(LengthVector length_vector) : Parent(length_vector, "FieldsLength") {}
+  FieldsLength(std::initializer_list<LengthStruct> length_initializer_list) : Parent(length_initializer_list, "FieldsLength") {}
+
+  /* Mask creator */
+  inline static data_t mask(u8& length)
+  {
+    return ~( (-1) << length );
+  }
 
   /* Subscript operators witch returns mask */
-  const data_t operator[](NameT name) const { return mask(Parent::find_data_by_name(name)); }
-        data_t operator[](NameT name)       { return mask(Parent::find_data_by_name(name)); }
+  const data_t operator[](NameT name) const { return mask( Parent::find_data_by_name(name) ); }
+        data_t operator[](NameT name)       { return mask( Parent::find_data_by_name(name) ); }
 };
 
 
 
 /* Fields data definitions container */
 template <typename NameT = u8>
-class FieldsData  : public FieldsContainer<NameT, BitFlow>
+class FieldsData  : public FieldsContainer<NameT, data_t>
 {
-  /* Friend */
-  friend class Fields<NameT>;
-  
 private:
   /* Content data types */
-  typedef FieldsContainer<NameT, BitFlow> Parent;
+  typedef FieldsContainer<NameT, data_t> Parent;
   using DataStruct = typename Parent::ContentStruct;
   using DataVector = typename Parent::ContentVector;
 
 public:
   /* Constructors */
-  FieldsData() : Parent("data") {}
-  FieldsData(DataVector data_vector) : Parent(data_vector, "data") {}
-  FieldsData(std::initializer_list<DataStruct> data_initializer_list) : Parent(data_initializer_list, "data") {}
+  FieldsData() : Parent("FieldsData") {}
+  FieldsData(DataVector data_vector) : Parent(data_vector, "FieldsData") {}
+  FieldsData(std::initializer_list<DataStruct> data_initializer_list) : Parent(data_initializer_list, "FieldsData") {}
 
   /* Subscript operators */
-  const BitFlow& operator[](NameT name) const { return Parent::find_data_by_name(name); }
-        BitFlow& operator[](NameT name)       { return Parent::find_data_by_name(name); }
+  const data_t& operator[](NameT name) const { return Parent::find_data_by_name(name); }
+        data_t& operator[](NameT name)       { return Parent::find_data_by_name(name); }
 };
 
 } /* namespace SPU */

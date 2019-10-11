@@ -15,8 +15,14 @@
 # Ignore all executable binaries tests
 test*/test*
 dijkstra/dijkstra
+main
 
 # Ignore all doxygen-generated dirs
 doc
 
+# Ignore Idea and CMake
 .idea
+*.cmake
+CMakeFiles
+CMakeCache.txt
+Makefile

@@ -3,6 +3,7 @@
         - error when there is no space in SPU's structures
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
+                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 

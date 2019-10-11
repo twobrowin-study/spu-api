@@ -3,6 +3,7 @@
         - file operation helper class declaration and implementation
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
+                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -45,7 +46,6 @@ public:
     descriptor = open(filename, O_RDWR);
   }
 
-
   /* Destructor */
   ~Fileops()
   {
@@ -54,7 +54,6 @@ public:
       close(descriptor);
     }
   }
-
 
   /* Template method witch executes given format */
   template<typename CmdFrmt, typename RsltFrmt>

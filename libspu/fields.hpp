@@ -3,6 +3,7 @@
         - declaration of class necessary for data_t fields split
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
+                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -21,68 +22,78 @@
 #ifndef FIELDS_HPP
 #define FIELDS_HPP
 
-#include "libspu.h"
+#include "libspu.hpp"
 #include "fields_containers.hpp"
 
 namespace SPU
 {
 
 /* Fields splited data_t */
-template <typename NameT = u8>
+template <typename NameT>
 class Fields
 {
-  using DataVector = typename FieldsData<NameT>::DataVector;
-
 private:
-  FieldsLength<NameT> length;
-  FieldsData<NameT> data;
+  /* Types */
+  using Length = FieldsLength<NameT>;
+  using Data   = FieldsData<NameT>;
 
-  /* Pure data initializer */
-  void init_data()
+  Length length; // Length
+  Data data;     // Data
+
+  /* Data initializer from data flow */
+  void init_data(data_t fields_data)
   {
-    data = FieldsData<NameT>();
-    for(auto ex : length.cont_vec)
+    u8 shift = 0;
+    for ( auto& ex : length )
     {
-      data.cont_vec.push_back({ex.name, BitFlow()});
+      data_t mask = Length::mask(ex.length);
+      data_t flow = (fields_data >> shift) & mask;
+      data.push( {ex.name, flow} );
+      shift += ex.length;
     }
   }
 
-  /* Data initializer from data_t */
-  void init_data(data_t fields_data)
+  /* Data initializer from data fields */
+  void init_data(Data fields_data)
   {
-    data = FieldsData<NameT>();
-    u8 shift = 0;
-    for(auto ex : length.cont_vec)
+    for ( auto& ex : length )
     {
-      data_t mask = length.mask(ex.cont);
-      BitFlow flow( (fields_data >> shift) & mask );
-      data.cont_vec.push_back({ex.name, flow});
-      shift += ex.cont;
+      data_t mask = Length::mask(ex.length);
+      data_t flow = fields_data[ex.name] & mask;
+      data.push( {ex.name, flow} );
+    }
+  }
+
+  /* Data initializer from length fields */
+  void init_data()
+  {
+    for ( auto& ex : length )
+    {
+      data.push( {ex.name, 0} );
     }
   }
 
 public:
-  /* Constructors */
-  Fields(FieldsLength<NameT> fields_length) : length(fields_length), data() { init_data(); }
-  Fields(FieldsLength<NameT> fields_length, FieldsData<NameT> fields_data) : length(fields_length), data(fields_data) {}
-  Fields(FieldsLength<NameT> fields_length, BitFlow fields_data) : length(fields_length), data() { init_data(fields_data); }
+  /* Constructors, inited data via length masks */
+  Fields(Length fields_length)                     : length(fields_length), data() { init_data();            }
+  Fields(Length fields_length, Data fields_data)   : length(fields_length), data() { init_data(fields_data); }
+  Fields(Length fields_length, data_t fields_data) : length(fields_length), data() { init_data(fields_data); }
 
-  /* Get data as std:vector */
-  DataVector vecData()
+  operator Data&()
   {
-    return data.cont_vec;
+    return data;
   }
 
   /* data_t transform operator */
   operator data_t()
   {
-    data_t ret = {0};
+    data_t ret = 0;
     u8 shift = 0;
-    for(auto ex : length.cont_vec)
+    for(auto ex : length)
     {
       try
       {
-        ret = ret | ( ( data[ex.name] & length.mask(ex.cont) ) << shift );
+        ret = ret | ( ( data[ex.name] & Length::mask(ex.length) ) << shift );
       }
       catch(DidNotFoundDataByName<NameT>&) {}
       shift += ex.cont;
@@ -90,27 +101,21 @@ public:
     return ret;
   }
 
-  /* BitFlow transform operator */
-  operator BitFlow()
-  {
-    return BitFlow( (data_t) *this );
-  }
-
-  Fields& operator= (BitFlow fields_data)
+  Fields& operator= (data_t fields_data)
   {
     init_data(fields_data);
     return *this;
   }
 
-  Fields& operator= (FieldsData<NameT> fields_data)
+  Fields& operator= (Data fields_data)
   {
     data = fields_data;
     return *this;
   }
 
   /* Subscript operators */
-  const BitFlow& operator[](NameT name) const { return data[name]; }
-        BitFlow& operator[](NameT name)       { return data[name]; }
+  const data_t& operator[](NameT name) const { return data[name]; }
+        data_t& operator[](NameT name)       { return data[name]; }
 
 };
 
