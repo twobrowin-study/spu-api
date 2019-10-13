@@ -66,7 +66,14 @@ u32 Simulator::get_power()
 /* INS command execution */
 status_t Simulator::insert(key_t key, value_t value, flags_t flags)
 {
-  _data->emplace(key, value);
+  auto res = _data->emplace(key, value);
+
+  /* If new val was not incerted than we should change it */
+  if (res.second == false)
+  {
+    res.first->second = value;
+  }
+
   return OK;
 }
 
