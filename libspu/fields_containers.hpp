@@ -67,6 +67,12 @@ protected:
     throw DidNotFoundDataByName<NameT>(ClName, name);
   }
 
+  /* Push to add data */
+  inline void push(ContentStruct addict)
+  {
+    cont_vec.push_back(addict);
+  }
+
 private:
   ContentVector cont_vec; // Content vector
   std::string ClName;     // Class name to inform DidNotFoundDataByName error
@@ -81,14 +87,8 @@ public: /* Constructors */
     cont_vec(content_initializer_list), ClName(ClassName) {}
 
   /* Friends functions used int foreach cycle */
-  friend typename ContentVector::iterator begin(FieldsContainer<NameT, ContentT>& container) { return container.cont_vec.begin(); }
-  friend typename ContentVector::iterator end(FieldsContainer<NameT, ContentT>& container)   { return container.cont_vec.end();   }
-
-  /* Push to add data */
-  inline void push(ContentStruct addict)
-  {
-    cont_vec.push_back(addict);
-  }
+  friend auto begin(FieldsContainer<NameT, ContentT>& container) { return container.cont_vec.begin(); }
+  friend auto end(FieldsContainer<NameT, ContentT>& container)   { return container.cont_vec.end();   }
 };
 
 
@@ -138,10 +138,26 @@ public:
   FieldsData(DataVector data_vector) : Parent(data_vector, "FieldsData") {}
   FieldsData(std::initializer_list<DataStruct> data_initializer_list) : Parent(data_initializer_list, "FieldsData") {}
 
+  /* Addiction interface */
+  void push(DataStruct addict)
+  {
+    Parent::push(addict);
+  }
+
   /* Subscript operators */
   const data_t& operator[](NameT name) const { return Parent::find_data_by_name(name); }
         data_t& operator[](NameT name)       { return Parent::find_data_by_name(name); }
 };
+
+
+
+/***************************************
+  Fields data and length void
+***************************************/
+template<>
+class FieldsLength<void> {};
+template<>
+class FieldsData<void> {};
 
 } /* namespace SPU */
 

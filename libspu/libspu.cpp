@@ -36,7 +36,7 @@ std::string to_string(gsid_t gsid)
 std::string to_string(data_t data, bool hex)
 {
   std::string ret;
-  const char *format = hex ? "%02x:" : "%d-"; // Choose if it hex or decimal
+  const char *format = hex ? "%08x-" : "%d-"; // Choose if it hex or decimal
 
   for(u8 i=1; i<SPU_WEIGHT+1; i++)
   {

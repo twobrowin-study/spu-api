@@ -172,20 +172,29 @@ struct data_container
 #ifdef __cplusplus
 
   /* Constructors */
-  data_container()                     { set(0);    }
-  data_container(u32 data[SPU_WEIGHT]) { set(data); }
+  data_container() { std::memset(&cont, 0, sizeof(cont)); }
+  data_container(u32 data[SPU_WEIGHT]) { set(cont, data); }
   template <typename T>
-  data_container(T data)               { set(data); }
+  data_container(T data)               { set(cont, data); }
+
+  /* Cast to any type */
+  template <typename T>
+  operator T()
+  {
+    T ret;
+    set(ret, cont);
+    return ret;
+  }
 
   /* Set data template method */
-  template <typename T>
-  void set(T data)
+  template <typename T1, typename T2>
+  void set(T1 &to, T2 &from)
   {
-    auto data_size = sizeof(data);
-    auto max_size  = sizeof(cont);
-    auto bytes_cnt = data_size < max_size ? data_size : max_size;
-    std::memset(&cont, 0, max_size);
-    std::memcpy(&cont, &data, bytes_cnt);
+    auto from_size = sizeof(from);
+    auto to_size  = sizeof(to);
+    auto bytes_cnt = from_size < to_size ? from_size : to_size;
+    std::memset(&to, 0, to_size);
+    std::memcpy(&to, &from, bytes_cnt);
   }
 
   /* Get content operator */

@@ -46,7 +46,8 @@ public:
 
   /* Provider functions */
   value_t get_id()        { return _id; }
-  void set_id(value_t id) { _id = id; }
+  void set_id(value_t id) { _id = id;   }
+  operator data_t()       { return _id; }
 
   /* This methods should be used after SPU updates */
   static void spu_insert(gsid_t gsid, key_t key, BaseExternValue &value);

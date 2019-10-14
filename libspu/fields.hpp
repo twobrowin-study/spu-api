@@ -24,12 +24,13 @@
 
 #include "libspu.hpp"
 #include "fields_containers.hpp"
+#include "errors/no_fields_data.hpp"
 
 namespace SPU
 {
 
 /* Fields splited data_t */
-template <typename NameT>
+template <typename NameT = u8>
 class Fields
 {
 private:
@@ -37,87 +38,111 @@ private:
   using Length = FieldsLength<NameT>;
   using Data   = FieldsData<NameT>;
 
-  Length length; // Length
-  Data data;     // Data
+  Length length;       // Length
+  Data   *data = NULL; // Data
 
-  /* Data initializer from data flow */
-  void init_data(data_t fields_data)
+protected:
+
+  /* Check for data instance */
+  void check_data()
   {
-    u8 shift = 0;
-    for ( auto& ex : length )
+    if (!data)
     {
-      data_t mask = Length::mask(ex.length);
-      data_t flow = (fields_data >> shift) & mask;
-      data.push( {ex.name, flow} );
-      shift += ex.length;
+      throw NoFieldsData();
     }
   }
 
-  /* Data initializer from data fields */
-  void init_data(Data fields_data)
+  /* Delete Data instance */
+  void clear_data()
   {
-    for ( auto& ex : length )
+    if (data)
     {
-      data_t mask = Length::mask(ex.length);
-      data_t flow = fields_data[ex.name] & mask;
-      data.push( {ex.name, flow} );
-    }
-  }
-
-  /* Data initializer from length fields */
-  void init_data()
-  {
-    for ( auto& ex : length )
-    {
-      data.push( {ex.name, 0} );
+      delete data;
     }
   }
 
 public:
-  /* Constructors, inited data via length masks */
-  Fields(Length fields_length)                     : length(fields_length), data() { init_data();            }
-  Fields(Length fields_length, Data fields_data)   : length(fields_length), data() { init_data(fields_data); }
-  Fields(Length fields_length, data_t fields_data) : length(fields_length), data() { init_data(fields_data); }
-
-  operator Data&()
+  /* Constructor */
+  Fields(Length fields_length): length(fields_length)
   {
-    return data;
+    data = new Data();
+    for ( auto ex : length )
+    {
+      data->push( {ex.name, 0} );
+    }
+  }
+  
+  /* Destructor */
+  ~Fields()
+  { 
+    clear_data();
   }
 
   /* data_t transform operator */
   operator data_t()
   {
+    check_data();
+
     data_t ret = 0;
-    u8 shift = 0;
+    u8 shift   = 0;
     for(auto ex : length)
     {
       try
       {
-        ret = ret | ( ( data[ex.name] & Length::mask(ex.length) ) << shift );
+        ret = ret | ( ( (*data)[ex.name] & Length::mask(ex.length) ) << shift );
       }
       catch(DidNotFoundDataByName<NameT>&) {}
-      shift += ex.cont;
+      shift += ex.length;
     }
     return ret;
   }
 
   Fields& operator= (data_t fields_data)
   {
-    init_data(fields_data);
+    clear_data();
+    data = new Data();
+
+    u8 shift = 0;
+    for ( auto ex : length )
+    {
+      data_t mask = Length::mask(ex.length);
+      data_t flow = ( fields_data >> shift ) & mask;
+      data->push( {ex.name, flow} );
+      shift += ex.length;
+    }
+
     return *this;
   }
 
   Fields& operator= (Data fields_data)
   {
-    data = fields_data;
+    clear_data();
+    data = new Data();
+    
+    for ( auto ex : fields_data )
+    {
+      data_t flow = ex.data & length[ex.name];
+      data->push( {ex.name, flow} );
+    }
+
     return *this;
   }
 
   /* Subscript operators */
-  const data_t& operator[](NameT name) const { return data[name]; }
-        data_t& operator[](NameT name)       { return data[name]; }
+  const data_t& operator[](NameT name) const { check_data(); return (*data)[name]; }
+        data_t& operator[](NameT name)       { check_data(); return (*data)[name]; }
+
+  /* Friends functions used int foreach cycle */
+  friend auto begin(Fields<NameT>& fields) { fields.check_data(); return begin(*fields.data); }
+  friend auto end(Fields<NameT>& fields)   { fields.check_data(); return end(*fields.data);   }
 
 };
+
+
+/* void Fields class */
+template<>
+class Fields<void>
+{};
 
 } /* namespace SPU */
 

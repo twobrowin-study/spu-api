@@ -28,9 +28,6 @@
 namespace SPU
 {
 
-/* Simulating structures */
-std::map<gsid_t, std::map<key_t, value_t> *> globalStructures;
-
 /* Simulating GSID generation */
 gsid_t getNextGsid()
 {
@@ -48,13 +45,12 @@ Simulator::Simulator()
 {
   gsid = getNextGsid();
   _data = new std::map<key_t, value_t>();
-  globalStructures[gsid] = _data;
 }
 
 /* Destructor */
 Simulator::~Simulator()
 {
-  globalStructures.erase(get_gsid());
+  delete _data;
 }
 
 /* Get structure power */
