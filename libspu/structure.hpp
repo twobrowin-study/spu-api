@@ -109,9 +109,12 @@ public:
   /*************************************
     Constructors
   *************************************/
-  Structure(KeyLength key_length) : BaseStructureClass()
+  Structure(KeyLength key_length, bool is_val_constr = false) : BaseStructureClass()
   {
-    _key = new Key(key_length);
+    if (!is_val_constr)
+    {
+      _key = new Key(key_length);
+    }
   }
 
   Structure(ValueLength value_length) : BaseStructureClass()
