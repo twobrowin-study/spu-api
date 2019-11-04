@@ -56,13 +56,17 @@ add_library(
         libspu/simulator.cpp
         libspu/simulator.hpp
         libspu/structure.hpp
-        
+
         libspu/fileops.hpp
+
+        libspu/abstract_fields.hpp
         libspu/fields.hpp
+        libspu/fields_pointer.hpp
         libspu/fields_containers.hpp
+
         libspu/extern_value.hpp
         libspu/extern_value.cpp
-        
+
         libspu/errors/could_not_create_structure.hpp
         libspu/errors/did_not_found_by_name.hpp
 )

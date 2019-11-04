@@ -23,7 +23,7 @@
 #define FIELDS_HPP
 
 #include "libspu.hpp"
-#include "fields_containers.hpp"
+#include "abstract_fields.hpp"
 #include "errors/no_fields_data.hpp"
 
 namespace SPU
@@ -31,20 +31,19 @@ namespace SPU
 
 /* Fields splited data_t */
 template <typename NameT = u8>
-class Fields
+class Fields : public AbstractFields<NameT>
 {
 private:
   /* Types */
-  using Length = FieldsLength<NameT>;
-  using Data   = FieldsData<NameT>;
-
+  using Length = typename AbstractFields<NameT>::Length;
+  using Data   = typename AbstractFields<NameT>::Data;
   Length length;       // Length
   Data   *data = NULL; // Data
 
 protected:
 
   /* Check for data instance */
-  void check_data()
+  inline void check_data()
   {
     if (!data)
     {
@@ -53,7 +52,7 @@ protected:
   }
 
   /* Delete Data instance */
-  void clear_data()
+  inline void clear_data()
   {
     if (data)
     {
@@ -63,7 +62,7 @@ protected:
 
 public:
   /* Constructor */
-  Fields(Length fields_length): length(fields_length)
+  Fields(Length fields_length): AbstractFields<NameT>(), length(fields_length)
   {
     data = new Data();
     for ( auto ex : length )
@@ -79,7 +78,7 @@ public:
   }
 
   /* data_t transform operator */
-  operator data_t()
+  operator data_t() override
   {
     check_data();
 
@@ -97,7 +96,8 @@ public:
     return ret;
   }
 
-  Fields& operator= (data_t fields_data)
+  /* Set data_t for fields data */
+  Fields& operator= (data_t fields_data) override
   {
     clear_data();
     data = new Data();
@@ -114,7 +114,8 @@ public:
     return *this;
   }
 
-  Fields& operator= (Data fields_data)
+  /* Set Data for fields data */
+  Fields& operator= (Data fields_data) override
   {
     clear_data();
     data = new Data();
@@ -128,21 +129,19 @@ public:
     return *this;
   }
 
-  /* Subscript operators */
-  const data_t& operator[](NameT name) const { check_data(); return (*data)[name]; }
-        data_t& operator[](NameT name)       { check_data(); return (*data)[name]; }
+  /* Subscript operator */
+  data_t& operator[](NameT name) override { check_data(); return (*data)[name]; }
 
   /* Friends functions used int foreach cycle */
   friend auto begin(Fields<NameT>& fields) { fields.check_data(); return begin(*fields.data); }
-  friend auto end(Fields<NameT>& fields)   { fields.check_data(); return end(*fields.data);   }
+  friend auto end(Fields<NameT>&   fields) { fields.check_data(); return end(*fields.data);   }
 
 };
 
 
 /* void Fields class */
 template<>
-class Fields<void>
-{};
+class Fields<void> : public AbstractFields<void> {};
 
 } /* namespace SPU */
 

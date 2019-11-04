@@ -1,4 +1,501 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="340px" preserveAspectRatio="none" style="width:896px;height:340px;" version="1.1" viewBox="0 0 896 340" width="896px" zoomAndPan="magnify"><defs><filter height="300%" id="f17xsnf7sio425" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--class BaseStructure--><rect fill="#FEFECE" filter="url(#f17xsnf7sio425)" height="32" id="BaseStructure" style="stroke: #A80036; stroke-width: 1.5;" width="130" x="294" y="127"/><ellipse cx="309" cy="143" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M311.9688,148.6406 Q311.3906,148.9375 310.75,149.0859 Q310.1094,149.2344 309.4063,149.2344 Q306.9063,149.2344 305.5859,147.5859 Q304.2656,145.9375 304.2656,142.8125 Q304.2656,139.6875 305.5859,138.0313 Q306.9063,136.375 309.4063,136.375 Q310.1094,136.375 310.7578,136.5313 Q311.4063,136.6875 311.9688,136.9844 L311.9688,139.7031 Q311.3438,139.125 310.75,138.8516 Q310.1563,138.5781 309.5313,138.5781 Q308.1875,138.5781 307.5,139.6484 Q306.8125,140.7188 306.8125,142.8125 Q306.8125,144.9063 307.5,145.9766 Q308.1875,147.0469 309.5313,147.0469 Q310.1563,147.0469 310.75,146.7734 Q311.3438,146.5 311.9688,145.9219 L311.9688,148.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="90" x="327" y="147.1543">BaseStructure</text><!--class Simulator--><rect fill="#FEFECE" filter="url(#f17xsnf7sio425)" height="32" id="Simulator" style="stroke: #A80036; stroke-width: 1.5;" width="99" x="159.5" y="127"/><ellipse cx="174.5" cy="143" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M177.4688,148.6406 Q176.8906,148.9375 176.25,149.0859 Q175.6094,149.2344 174.9063,149.2344 Q172.4063,149.2344 171.0859,147.5859 Q169.7656,145.9375 169.7656,142.8125 Q169.7656,139.6875 171.0859,138.0313 Q172.4063,136.375 174.9063,136.375 Q175.6094,136.375 176.2578,136.5313 Q176.9063,136.6875 177.4688,136.9844 L177.4688,139.7031 Q176.8438,139.125 176.25,138.8516 Q175.6563,138.5781 175.0313,138.5781 Q173.6875,138.5781 173,139.6484 Q172.3125,140.7188 172.3125,142.8125 Q172.3125,144.9063 173,145.9766 Q173.6875,147.0469 175.0313,147.0469 Q175.6563,147.0469 176.25,146.7734 Q176.8438,146.5 177.4688,145.9219 L177.4688,148.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="59" x="192.5" y="147.1543">Simulator</text><!--class StructureVoid--><rect fill="#FEFECE" filter="url(#f17xsnf7sio425)" height="32" id="StructureVoid" style="stroke: #A80036; stroke-width: 1.5;" width="136" x="448" y="35"/><ellipse cx="463" cy="51" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M465.9688,56.6406 Q465.3906,56.9375 464.75,57.0859 Q464.1094,57.2344 463.4063,57.2344 Q460.9063,57.2344 459.5859,55.5859 Q458.2656,53.9375 458.2656,50.8125 Q458.2656,47.6875 459.5859,46.0313 Q460.9063,44.375 463.4063,44.375 Q464.1094,44.375 464.7578,44.5313 Q465.4063,44.6875 465.9688,44.9844 L465.9688,47.7031 Q465.3438,47.125 464.75,46.8516 Q464.1563,46.5781 463.5313,46.5781 Q462.1875,46.5781 461.5,47.6484 Q460.8125,48.7188 460.8125,50.8125 Q460.8125,52.9063 461.5,53.9766 Q462.1875,55.0469 463.5313,55.0469 Q464.1563,55.0469 464.75,54.7734 Q465.3438,54.5 465.9688,53.9219 L465.9688,56.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="59" x="481" y="55.1543">Structure</text><rect fill="#FFFFFF" height="23.9688" style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" width="35" x="552" y="32"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="25" x="557" y="48.1387">void</text><!--class Structure--><rect fill="#FEFECE" filter="url(#f17xsnf7sio425)" height="32" id="Structure" style="stroke: #A80036; stroke-width: 1.5;" width="263" x="619.5" y="35"/><ellipse cx="634.5" cy="51" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M637.4688,56.6406 Q636.8906,56.9375 636.25,57.0859 Q635.6094,57.2344 634.9063,57.2344 Q632.4063,57.2344 631.0859,55.5859 Q629.7656,53.9375 629.7656,50.8125 Q629.7656,47.6875 631.0859,46.0313 Q632.4063,44.375 634.9063,44.375 Q635.6094,44.375 636.2578,44.5313 Q636.9063,44.6875 637.4688,44.9844 L637.4688,47.7031 Q636.8438,47.125 636.25,46.8516 Q635.6563,46.5781 635.0313,46.5781 Q633.6875,46.5781 633,47.6484 Q632.3125,48.7188 632.3125,50.8125 Q632.3125,52.9063 633,53.9766 Q633.6875,55.0469 635.0313,55.0469 Q635.6563,55.0469 636.25,54.7734 Q636.8438,54.5 637.4688,53.9219 L637.4688,56.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="59" x="652.5" y="55.1543">Structure</text><rect fill="#FFFFFF" height="23.9688" style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" width="162" x="723.5" y="32"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="152" x="728.5" y="48.1387">KeyNameT, ValueNameT</text><!--class Fields--><rect fill="#FEFECE" filter="url(#f17xsnf7sio425)" height="32" id="Fields" style="stroke: #A80036; stroke-width: 1.5;" width="76" x="713" y="127"/><ellipse cx="728" cy="143" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M730.9688,148.6406 Q730.3906,148.9375 729.75,149.0859 Q729.1094,149.2344 728.4063,149.2344 Q725.9063,149.2344 724.5859,147.5859 Q723.2656,145.9375 723.2656,142.8125 Q723.2656,139.6875 724.5859,138.0313 Q725.9063,136.375 728.4063,136.375 Q729.1094,136.375 729.7578,136.5313 Q730.4063,136.6875 730.9688,136.9844 L730.9688,139.7031 Q730.3438,139.125 729.75,138.8516 Q729.1563,138.5781 728.5313,138.5781 Q727.1875,138.5781 726.5,139.6484 Q725.8125,140.7188 725.8125,142.8125 Q725.8125,144.9063 726.5,145.9766 Q727.1875,147.0469 728.5313,147.0469 Q729.1563,147.0469 729.75,146.7734 Q730.3438,146.5 730.9688,145.9219 L730.9688,148.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="746" y="147.1543">Fields</text><!--class AbstractStructure--><rect fill="#FEFECE" filter="url(#f17xsnf7sio425)" height="32" id="AbstractStructure" style="stroke: #A80036; stroke-width: 1.5;" width="151" x="197.5" y="35"/><ellipse cx="212.5" cy="51" fill="#A9DCDF" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M212.6094,46.3438 L211.4531,51.4219 L213.7813,51.4219 L212.6094,46.3438 Z M211.125,44.1094 L214.1094,44.1094 L217.4688,56.5 L215.0156,56.5 L214.25,53.4375 L210.9688,53.4375 L210.2188,56.5 L207.7813,56.5 L211.125,44.1094 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="111" x="230.5" y="55.1543">AbstractStructure</text><path d="M6,280 L6,328.2656 A0,0 0 0 0 6,328.2656 L412,328.2656 A0,0 0 0 0 412,328.2656 L412,290 L402,280 L213,280 L209,159.0259 L205,280 L6,280 A0,0 0 0 0 6,280 " fill="#FBFB77" filter="url(#f17xsnf7sio425)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M402,280 L402,290 L412,290 L402,280 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="373" x="16" y="301.0669">Только в случае компиляции с флагом SPU_SIMULATOR</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="182" x="20" y="316.1997">(подменяет BaseStructure)</text><!--link AbstractStructure to BaseStructure--><path d="M302.0179,82.0424 C316.0666,97.0713 332.3498,114.4905 343.9031,126.8498 " fill="none" id="AbstractStructure-BaseStructure" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="296.5241,86.4159,287.9801,67.0252,306.7515,76.8555,296.5241,86.4159" style="stroke: #A80036; stroke-width: 1.0;"/><!--link AbstractStructure to Simulator--><path d="M250.3994,83.4884 C240.1805,98.178 228.5583,114.8849 220.2349,126.8498 " fill="none" id="AbstractStructure-Simulator" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="244.6844,79.4458,261.8521,67.0252,256.1771,87.4408,244.6844,79.4458" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StructureVoid to BaseStructure--><path d="M488.6527,67.0252 C465.3822,80.6614 431.4894,100.5221 404.1929,116.5176 " fill="none" id="StructureVoid-BaseStructure" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="407.3554,122.7776,386.5607,126.8498,400.2773,110.6987,407.3554,122.7776" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StructureVoid to Simulator--><path d="M447.7504,62.727 C399.2295,72.1546 333.0013,87.2571 277,108 C269.5499,110.7595 261.8675,114.1412 254.4685,117.7033 " fill="none" id="StructureVoid-Simulator" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="257.4216,124.0558,236.4321,126.961,251.0286,111.6006,257.4216,124.0558" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Structure to BaseStructure--><path d="M619.4516,66.3408 C561.1362,75.2151 492.2369,88.5751 432,108 C423.4556,110.7553 414.6304,114.3147 406.1964,118.1052 " fill="none" id="Structure-BaseStructure" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="409.1441,124.4551,388.087,126.8218,403.0722,111.8403,409.1441,124.4551" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Structure to Simulator--><path d="M619.4831,65.6561 C484.9469,80.8257 293.3192,102.9964 277,108 C268.9024,110.4828 260.6183,113.9014 252.7433,117.6353 " fill="none" id="Structure-Simulator" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="255.8513,123.9089,234.8762,126.9167,249.3975,111.4851,255.8513,123.9089" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Structure to Fields--><path d="M751,67.0252 C751,79.8747 751,98.2512 751,113.7125 " fill="none" id="Structure-Fields" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="751,126.8498,755,120.8498,751,114.8498,747,120.8498,751,126.8498" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   contentScriptType="application/ecmascript"
+   contentStyleType="text/css"
+   height="148mm"
+   preserveAspectRatio="none"
+   version="1.1"
+   viewBox="0 0 793.70076 559.37006"
+   width="210mm"
+   zoomAndPan="magnify"
+   id="svg117"
+   sodipodi:docname="structures.svg"
+   inkscape:version="0.92.4 (unknown)">
+  <metadata
+     id="metadata121">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview119"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:zoom="0.44980377"
+     inkscape:cx="-344.71382"
+     inkscape:cy="110.31908"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g115"
+     units="mm" />
+  <defs
+     id="defs11">
+    <filter
+       height="3"
+       id="f1iiorrr5gacva"
+       width="3"
+       x="-1"
+       y="-1">
+      <feGaussianBlur
+         result="blurOut"
+         stdDeviation="2.0"
+         id="feGaussianBlur2" />
+      <feColorMatrix
+         in="blurOut"
+         result="blurOut2"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"
+         id="feColorMatrix4" />
+      <feOffset
+         dx="4.0"
+         dy="4.0"
+         in="blurOut2"
+         result="blurOut3"
+         id="feOffset6" />
+      <feBlend
+         in="SourceGraphic"
+         in2="blurOut3"
+         mode="normal"
+         id="feBlend8" />
+    </filter>
+  </defs>
+  <g
+     id="g115"
+     transform="translate(0,188.3701)">
+    <path
+       d="m 349.79055,5.83342 c 19.84816,22.69085 45.60222,52.13366 63.05295,72.0838"
+       id="AbstractStructure&lt;-BaseStructure"
+       style="fill:none;stroke:#a80036;stroke-width:0.72306967"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 556.511,143.03414 c -30.4762,-14.1607 -75.399,-35.0339 -110.4501,-51.3203"
+       id="Structure-&gt;BaseStructure"
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 244.79573,139.9902 c 10.24501,-6.53884 24.35705,-15.5459 37.15269,-23.71275"
+       id="StructureVoid-&gt;BaseStructure-7"
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       inkscape:connector-curvature="0" />
+    <!--MD5=[f0f6de1d2713e232fb8cff0073b7858d]
+class BaseStructure-->
+    <rect
+       height="32"
+       id="BaseStructure"
+       style="fill:#fefece;stroke:#a80036;stroke-width:1.5;filter:url(#f1iiorrr5gacva)"
+       width="130"
+       x="322"
+       y="49" />
+    <circle
+       cx="337"
+       cy="65"
+       style="fill:#add1b2;stroke:#a80036;stroke-width:1"
+       id="ellipse14"
+       r="11" />
+    <path
+       d="m 339.9688,70.6406 q -0.5782,0.2969 -1.2188,0.4453 -0.6406,0.1485 -1.3437,0.1485 -2.5,0 -3.8204,-1.6485 -1.3203,-1.6484 -1.3203,-4.7734 0,-3.125 1.3203,-4.7812 1.3204,-1.6563 3.8204,-1.6563 0.7031,0 1.3515,0.1563 0.6485,0.1562 1.211,0.4531 v 2.7187 q -0.625,-0.5781 -1.2188,-0.8515 -0.5937,-0.2735 -1.2187,-0.2735 -1.3438,0 -2.0313,1.0703 -0.6875,1.0704 -0.6875,3.1641 0,2.0938 0.6875,3.1641 0.6875,1.0703 2.0313,1.0703 0.625,0 1.2187,-0.2735 0.5938,-0.2734 1.2188,-0.8515 z"
+       id="path16"
+       inkscape:connector-curvature="0" />
+    <text
+       font-size="12"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="90"
+       x="327"
+       y="147.1543"
+       id="text18"
+       style="font-size:12px;font-family:sans-serif;fill:#000000"
+       transform="translate(28,-78)">BaseStructure</text>
+    <!--MD5=[e78d3bd29d68b8fbdb4aae8710e3db25]
+class Simulator-->
+    <rect
+       height="32"
+       id="Simulator"
+       style="fill:#fefece;stroke:#a80036;stroke-width:1.5;filter:url(#f1iiorrr5gacva)"
+       width="99"
+       x="187.5"
+       y="49" />
+    <circle
+       cx="202.5"
+       cy="65"
+       style="fill:#add1b2;stroke:#a80036;stroke-width:1"
+       id="ellipse21"
+       r="11" />
+    <path
+       d="m 205.4688,70.6406 q -0.5782,0.2969 -1.2188,0.4453 -0.6406,0.1485 -1.3437,0.1485 -2.5,0 -3.8204,-1.6485 -1.3203,-1.6484 -1.3203,-4.7734 0,-3.125 1.3203,-4.7812 1.3204,-1.6563 3.8204,-1.6563 0.7031,0 1.3515,0.1563 0.6485,0.1562 1.211,0.4531 v 2.7187 q -0.625,-0.5781 -1.2188,-0.8515 -0.5937,-0.2735 -1.2187,-0.2735 -1.3438,0 -2.0313,1.0703 -0.6875,1.0704 -0.6875,3.1641 0,2.0938 0.6875,3.1641 0.6875,1.0703 2.0313,1.0703 0.625,0 1.2187,-0.2735 0.5938,-0.2734 1.2188,-0.8515 z"
+       id="path23"
+       inkscape:connector-curvature="0" />
+    <text
+       font-size="12"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="59"
+       x="192.5"
+       y="147.1543"
+       id="text25"
+       style="font-size:12px;font-family:sans-serif;fill:#000000"
+       transform="translate(28,-78)">Simulator</text>
+    <!--MD5=[f6e43e0029f2d05fde80c571da6d45a4]
+class StructureVoid-->
+    <rect
+       height="32"
+       id="StructureVoid"
+       style="fill:#fefece;stroke:#a80036;stroke-width:1.5;filter:url(#f1iiorrr5gacva)"
+       width="136"
+       x="122"
+       y="137" />
+    <circle
+       cx="137"
+       cy="153"
+       style="fill:#add1b2;stroke:#a80036;stroke-width:1"
+       id="ellipse28"
+       r="11" />
+    <path
+       d="m 139.9688,158.6406 q -0.5782,0.2969 -1.2188,0.4453 -0.6406,0.1485 -1.3437,0.1485 -2.5,0 -3.8204,-1.6485 -1.3203,-1.6484 -1.3203,-4.7734 0,-3.125 1.3203,-4.7812 1.3204,-1.6563 3.8204,-1.6563 0.7031,0 1.3515,0.1563 0.6485,0.1562 1.211,0.4531 v 2.7187 q -0.625,-0.5781 -1.2188,-0.8515 -0.5937,-0.2735 -1.2187,-0.2735 -1.3438,0 -2.0313,1.0703 -0.6875,1.0704 -0.6875,3.1641 0,2.0938 0.6875,3.1641 0.6875,1.0703 2.0313,1.0703 0.625,0 1.2187,-0.2735 0.5938,-0.2734 1.2188,-0.8515 z"
+       id="path30"
+       inkscape:connector-curvature="0" />
+    <text
+       font-size="12"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="59"
+       x="287"
+       y="55.154301"
+       id="text32"
+       style="font-size:12px;font-family:sans-serif;fill:#000000"
+       transform="translate(-132,102)">Structure</text>
+    <rect
+       height="23.9688"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-dasharray:2, 2"
+       width="35"
+       x="226"
+       y="134"
+       id="rect34" />
+    <text
+       font-size="12"
+       font-style="italic"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="25"
+       x="363"
+       y="48.138699"
+       id="text36"
+       style="font-style:italic;font-size:12px;font-family:sans-serif;fill:#000000"
+       transform="translate(-132,102)">void</text>
+    <path
+       d="m 605,91.0252 c 0,13.69083 0,33.27055 0,49.74419"
+       id="Structure-&gt;FieldsPointer"
+       style="fill:none;stroke:#a80036;stroke-width:1.03221893"
+       inkscape:connector-curvature="0" />
+    <!--MD5=[3915787db80ab162e3259f8f86339844]
+class Structure-->
+    <rect
+       height="32"
+       id="Structure"
+       style="fill:#fefece;stroke:#a80036;stroke-width:1.5;filter:url(#f1iiorrr5gacva)"
+       width="263"
+       x="413.5"
+       y="137" />
+    <circle
+       cx="428.5"
+       cy="153"
+       style="fill:#add1b2;stroke:#a80036;stroke-width:1"
+       id="ellipse39"
+       r="11" />
+    <path
+       d="m 431.4688,158.6406 q -0.5782,0.2969 -1.2188,0.4453 -0.6406,0.1485 -1.3437,0.1485 -2.5,0 -3.8204,-1.6485 -1.3203,-1.6484 -1.3203,-4.7734 0,-3.125 1.3203,-4.7812 1.3204,-1.6563 3.8204,-1.6563 0.7031,0 1.3515,0.1563 0.6485,0.1562 1.211,0.4531 v 2.7187 q -0.625,-0.5781 -1.2188,-0.8515 -0.5937,-0.2735 -1.2187,-0.2735 -1.3438,0 -2.0313,1.0703 -0.6875,1.0704 -0.6875,3.1641 0,2.0938 0.6875,3.1641 0.6875,1.0703 2.0313,1.0703 0.625,0 1.2187,-0.2735 0.5938,-0.2734 1.2188,-0.8515 z"
+       id="path41"
+       inkscape:connector-curvature="0" />
+    <text
+       font-size="12"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="59"
+       x="458.5"
+       y="55.154301"
+       id="text43"
+       transform="translate(-12,102)"
+       style="font-size:12px;font-family:sans-serif;fill:#000000">Structure</text>
+    <rect
+       height="23.9688"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-dasharray:2, 2"
+       width="162"
+       x="517.5"
+       y="134"
+       id="rect45" />
+    <text
+       font-size="12"
+       font-style="italic"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="152"
+       x="534.5"
+       y="48.138699"
+       id="text47"
+       transform="translate(-12,102)"
+       style="font-style:italic;font-size:12px;font-family:sans-serif;fill:#000000">KeyNameT, ValueNameT</text>
+    <!--MD5=[2507fd09791267e08bc46806a3c1e11d]
+class Fields-->
+    <rect
+       height="32"
+       id="Fields"
+       style="fill:#fefece;stroke:#a80036;stroke-width:1.5;filter:url(#f1iiorrr5gacva)"
+       width="76"
+       x="540"
+       y="-141"
+       transform="matrix(1,0,0,-1,8,-152)" />
+    <circle
+       cx="563"
+       cy="27"
+       style="fill:#add1b2;stroke:#a80036;stroke-width:1"
+       id="ellipse50"
+       r="11"
+       transform="scale(1,-1)" />
+    <path
+       d="m 565.9688,-21.3594 q -0.5782,0.2969 -1.2188,0.4453 -0.6406,0.1485 -1.3437,0.1485 -2.5,0 -3.8204,-1.6485 -1.3203,-1.6484 -1.3203,-4.7734 0,-3.125 1.3203,-4.7812 1.3204,-1.6563 3.8204,-1.6563 0.7031,0 1.3515,0.1563 0.6485,0.1562 1.211,0.4531 v 2.7187 q -0.625,-0.5781 -1.2188,-0.8515 -0.5937,-0.2735 -1.2187,-0.2735 -1.3438,0 -2.0313,1.0703 -0.6875,1.0704 -0.6875,3.1641 0,2.0938 0.6875,3.1641 0.6875,1.0703 2.0313,1.0703 0.625,0 1.2187,-0.2735 0.5938,-0.2734 1.2188,-0.8515 z"
+       id="path52"
+       inkscape:connector-curvature="0" />
+    <text
+       font-size="12"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="36"
+       x="533"
+       y="239.1543"
+       id="text54"
+       transform="translate(48,-262)"
+       style="font-size:12px;font-family:sans-serif;fill:#000000">Fields</text>
+    <!--MD5=[de341305e0aa6575d6c08b1fb518943c]
+class AbstractFields-->
+    <rect
+       height="32"
+       id="AbstractFields"
+       style="fill:#fefece;stroke:#a80036;stroke-width:1.5;filter:url(#f1iiorrr5gacva)"
+       width="129"
+       x="532.5"
+       y="-41"
+       transform="matrix(1,0,0,-1,8,-152)" />
+    <circle
+       cx="555.5"
+       cy="127"
+       style="fill:#add1b2;stroke:#a80036;stroke-width:1"
+       id="ellipse57"
+       r="11"
+       transform="scale(1,-1)" />
+    <path
+       d="m 558.4688,-121.3594 q -0.5782,0.2969 -1.2188,0.4453 -0.6406,0.1485 -1.3437,0.1485 -2.5,0 -3.8204,-1.6485 -1.3203,-1.6484 -1.3203,-4.7734 0,-3.125 1.3203,-4.7812 1.3204,-1.6563 3.8204,-1.6563 0.7031,0 1.3515,0.1563 0.6485,0.1562 1.211,0.4531 v 2.7187 q -0.625,-0.5781 -1.2188,-0.8515 -0.5937,-0.2735 -1.2187,-0.2735 -1.3438,0 -2.0313,1.0703 -0.6875,1.0704 -0.6875,3.1641 0,2.0938 0.6875,3.1641 0.6875,1.0703 2.0313,1.0703 0.625,0 1.2187,-0.2735 0.5938,-0.2734 1.2188,-0.8515 z"
+       id="path59"
+       inkscape:connector-curvature="0" />
+    <text
+       font-size="12"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="89"
+       x="525.5"
+       y="339.1543"
+       id="text61"
+       transform="translate(48,-462)"
+       style="font-size:12px;font-family:sans-serif;fill:#000000">AbstractFields</text>
+    <!--MD5=[762030015532a60126a75955e20e3223]
+class FieldsPointer-->
+    <rect
+       height="32"
+       id="FieldsPointer"
+       style="fill:#fefece;stroke:#a80036;stroke-width:1.5;filter:url(#f1iiorrr5gacva)"
+       width="121"
+       x="536.5"
+       y="-233"
+       transform="matrix(1,0,0,-1,8,-152)" />
+    <circle
+       cx="559.5"
+       cy="-65"
+       style="fill:#add1b2;stroke:#a80036;stroke-width:1"
+       id="ellipse64"
+       r="11"
+       transform="scale(1,-1)" />
+    <path
+       d="m 562.4688,70.6406 q -0.5782,0.2969 -1.2188,0.4453 -0.6406,0.1485 -1.3437,0.1485 -2.5,0 -3.8204,-1.6485 -1.3203,-1.6484 -1.3203,-4.7734 0,-3.125 1.3203,-4.7812 1.3204,-1.6563 3.8204,-1.6563 0.7031,0 1.3515,0.1563 0.6485,0.1562 1.211,0.4531 v 2.7187 q -0.625,-0.5781 -1.2188,-0.8515 -0.5937,-0.2735 -1.2187,-0.2735 -1.3438,0 -2.0313,1.0703 -0.6875,1.0704 -0.6875,3.1641 0,2.0938 0.6875,3.1641 0.6875,1.0703 2.0313,1.0703 0.625,0 1.2187,-0.2735 0.5938,-0.2734 1.2188,-0.8515 z"
+       id="path66"
+       inkscape:connector-curvature="0" />
+    <text
+       font-size="12"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="81"
+       x="529.5"
+       y="147.1543"
+       id="text68"
+       transform="translate(48,-78)"
+       style="font-size:12px;font-family:sans-serif;fill:#000000">FieldsPointer</text>
+    <!--MD5=[749e37c81bcf5b2d997b4552884dd7d2]
+class AbstractStructure-->
+    <rect
+       height="32"
+       id="AbstractStructure"
+       style="fill:#fefece;stroke:#a80036;stroke-width:1.5;filter:url(#f1iiorrr5gacva)"
+       width="151"
+       x="235.5"
+       y="-43" />
+    <circle
+       cx="250.5"
+       cy="-27"
+       style="fill:#a9dcdf;stroke:#a80036;stroke-width:1"
+       id="ellipse71"
+       r="11" />
+    <path
+       d="m 250.6094,-31.6562 -1.1563,5.0781 h 2.3282 z m -1.4844,-2.2344 h 2.9844 l 3.3594,12.3906 h -2.4532 l -0.7656,-3.0625 h -3.2812 l -0.75,3.0625 h -2.4375 z"
+       id="path73"
+       inkscape:connector-curvature="0" />
+    <text
+       font-size="12"
+       font-style="italic"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="111"
+       x="100.5"
+       y="55.154301"
+       id="text75"
+       transform="translate(168,-78)"
+       style="font-style:italic;font-size:12px;font-family:sans-serif;fill:#000000">AbstractStructure</text>
+    <path
+       d="m 124,261 v 48.2656 H 530 V 271 L 520,261 H 331 L 327,109.0396 323,261 H 124"
+       style="fill:#fbfb77;stroke:#a80036;stroke-width:1;filter:url(#f1iiorrr5gacva)"
+       id="path77"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 520,261 v 10 h 10 l -10,-10"
+       style="fill:#fbfb77;stroke:#a80036;stroke-width:1"
+       id="path79"
+       inkscape:connector-curvature="0" />
+    <text
+       font-size="13"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="373"
+       x="16"
+       y="332.06689"
+       id="text81"
+       transform="translate(118,-50)"
+       style="font-size:13px;font-family:sans-serif;fill:#000000">Только в случае компиляции с флагом SPU_SIMULATOR</text>
+    <text
+       font-size="13"
+       lengthAdjust="spacingAndGlyphs"
+       textLength="182"
+       x="20"
+       y="347.19971"
+       id="text83"
+       transform="translate(118,-50)"
+       style="font-size:13px;font-family:sans-serif;fill:#000000">(подменяет BaseStructure)</text>
+    <!--MD5=[f8b1b0566c39190c8c013b1953acace1]
+reverse link AbstractStructure to BaseStructure-->
+    <polygon
+       points="180.6243,67.0252 201.7679,68.4223 196.2818,81.3026 "
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       id="polygon86"
+       transform="rotate(25.752846,425.53308,369.98549)" />
+    <!--MD5=[3abae8ece88ed7592b9c9282f0a9c143]
+reverse link AbstractStructure to Simulator-->
+    <!--MD5=[bf35990e0341ff170f5a45ad3bc1a66d]
+link StructureVoid to BaseStructure-->
+    <path
+       d="m 281.94842,116.27745 c 10.24502,-6.53884 24.35706,-15.54589 37.1527,-23.71275"
+       id="StructureVoid-&gt;BaseStructure"
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       inkscape:connector-curvature="0" />
+    <polygon
+       points="352.5048,126.8498 338.5477,110.9061 351.5366,105.6823 "
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       id="polygon92"
+       transform="matrix(0.81367749,0.58131656,0.58131656,-0.81367749,-24.26265,-20.11612)" />
+    <!--MD5=[3272c5c16cdebddff4f5b50632128da5]
+link StructureVoid to Simulator-->
+    <path
+       d="m 157.97866,141.41766 c 15.9436,-12.9806 38.8151,-31.6016 57.9244,-47.1596"
+       id="StructureVoid-&gt;Simulator"
+       style="fill:none;stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+       inkscape:connector-curvature="0" />
+    <polygon
+       points="248.766,119.6508 228.8367,126.8498 239.9268,108.794 "
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       id="polygon95"
+       transform="rotate(-180,230.14778,104.22143)" />
+    <!--MD5=[15c235e4b1f9421d461303454bcab1d4]
+link Structure to BaseStructure-->
+    <polygon
+       points="414.8455,124.7703 393.7581,126.8498 408.9461,112.0739 "
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       id="polygon98"
+       transform="matrix(1,0,0,-1,34,210.05934)" />
+    <!--MD5=[7235b6c8690a30d8496216866fa9b935]
+link Structure to Simulator-->
+    <path
+       d="M 474.5623,139.1185 C 406.8411,126.8661 321.0469,110.0898 287,98.1195 279.3279,95.4221 271.4343,92.0119 263.8646,88.3844"
+       id="Structure-&gt;Simulator"
+       style="fill:none;stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+       inkscape:connector-curvature="0" />
+    <polygon
+       points="257.0113,123.9882 236.0252,126.9178 250.604,111.5405 "
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       id="polygon101"
+       transform="matrix(1,0,0,-1,10,208.1195)" />
+    <!--MD5=[b05fe881b5d6de25640f5120eedaeb9d]
+link Structure to FieldsPointer-->
+    <polygon
+       points="557,126.8498 561,120.8498 557,114.8498 553,120.8498 "
+       style="fill:#a80036;stroke:#a80036;stroke-width:1"
+       id="polygon104"
+       transform="matrix(1,0,0,-1,48,208)" />
+    <!--MD5=[918f9234f8903f12ba824797c373ec0a]
+link Fields to AbstractFields-->
+    <path
+       d="m 589.0527,-43.0667 c 2.4653,-12.9753 6.0274,-31.7232 9.16,-48.2104"
+       id="Fields-&gt;AbstractFields"
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       inkscape:connector-curvature="0" />
+    <polygon
+       points="557.0986,298.018 553.9549,318.9731 543.3446,300.6313 "
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       id="polygon107"
+       transform="matrix(1,0,0,-1,48,208)" />
+    <!--MD5=[d799f36da4ffe1fed7c38d17a9348a1c]
+link FieldsPointer to AbstractFields-->
+    <path
+       d="M 615.5234,48.9071 C 624.5657,34.0516 636.9241,11.0221 642,-11 c 6.4628,-28.0397 -4.409,-59.0583 -16.0078,-81.9597"
+       id="FieldsPointer-&gt;AbstractFields"
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       inkscape:connector-curvature="0" />
+    <polygon
+       points="583.9205,304.6996 568.0296,318.7168 571.7108,297.8493 "
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       id="polygon110"
+       transform="matrix(1,0,0,-1,48,208)" />
+    <!--MD5=[b112bfa611b3ce9b788287b7f9776a20]
+link FieldsPointer to Fields-->
+    <path
+       d="m 601.6905,48.9748 c -2.6537,-12.8495 -6.4489,-31.226 -9.642,-46.6873"
+       id="FieldsPointer-&gt;Fields"
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       inkscape:connector-curvature="0" />
+    <polygon
+       points="541.3354,218.8498 546.4663,213.7828 543.7624,207.0978 538.6316,212.1648 "
+       style="fill:#a80036;stroke:#a80036;stroke-width:1"
+       id="polygon113"
+       transform="matrix(1,0,0,-1,48,208)" />
+    <!--MD5=[5537bfac4a42d38f97d5161d1dda3b3e]
 @startuml
 
 skinparam Padding 4
@@ -13,7 +510,12 @@ together {
 together {
   class StructureVoid as "Structure<void>"
   class Structure     as "Structure<KeyNameT, ValueNameT>"
+}
+  
+together {
   class Fields
+  class AbstractFields
+  class FieldsPointer
 }
 
 note "Только в случае компиляции с флагом SPU_SIMULATOR \n (подменяет BaseStructure)" as NoteSimulator
@@ -30,18 +532,33 @@ StructureVoid ..|> Simulator
 Structure - -|> BaseStructure
 Structure ..|> Simulator
 
-Structure - -* Fields
+Structure - -* FieldsPointer
+
+Fields - -|> AbstractFields
+FieldsPointer - -|> AbstractFields
+FieldsPointer - -* Fields
 
 @enduml
 
-PlantUML version 1.2019.02(Sat Mar 02 00:20:40 MSK 2019)
+PlantUML version 1.2019.12(Sun Nov 03 13:24:54 MSK 2019)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 1.8.0_222-b10
+Java Version: 1.8.0_232-b09
 Operating System: Linux
-OS Version: 5.2.18-200.fc30.x86_64
 Default Encoding: UTF-8
 Language: ru
 Country: RU
---></g></svg>
+-->
+    <path
+       d="M 275.9515,4.4523 C 256.10334,27.14315 230.34928,56.58597 212.89855,76.53611"
+       id="AbstractStructure&lt;-BaseStructure-3"
+       style="fill:none;stroke:#a80036;stroke-width:0.72306967"
+       inkscape:connector-curvature="0" />
+    <polygon
+       points="180.6243,67.0252 201.7679,68.4223 196.2818,81.3026 "
+       style="fill:none;stroke:#a80036;stroke-width:1"
+       id="polygon86-6"
+       transform="matrix(-0.90067666,0.43449,0.43449,0.90067666,422.72168,-149.52278)" />
+  </g>
+</svg>

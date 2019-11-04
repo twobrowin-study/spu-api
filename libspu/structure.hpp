@@ -26,7 +26,7 @@
 #include <vector>
 
 #include "libspu.hpp"
-#include "fields.hpp"
+#include "fields_pointer.hpp"
 
 /* Including base or simulator */
 #ifndef SPU_SIMULATOR
@@ -55,107 +55,56 @@ class Structure: public BaseStructureClass
 {
 private:
   /* Types */
-  using Key         = Fields<KeyNameT>;
-  using Value       = Fields<ValueNameT>;
-  using KeyLength   = FieldsLength<KeyNameT>;
-  using ValueLength = FieldsLength<ValueNameT>;
-  using KeyData     = FieldsData<KeyNameT>;
-  using ValueData   = FieldsData<ValueNameT>;
+  using Key          = Fields<KeyNameT>;
+  using Value        = Fields<ValueNameT>;
+  using KeyPointer   = FieldsPointer<KeyNameT>;
+  using ValuePointer = FieldsPointer<ValueNameT>;
+  using KeyLength    = FieldsLength<KeyNameT>;
+  using ValueLength  = FieldsLength<ValueNameT>;
+  using KeyData      = FieldsData<KeyNameT>;
+  using ValueData    = FieldsData<ValueNameT>;
 
   /* Fields length keepers */
-  Key   *_key   = NULL;
-  Value *_value = NULL;
-
-  /* Proper destruct flags */
-  bool to_del_key   = true;
-  bool to_del_value = true;
+  KeyPointer   _key;
+  ValuePointer _value;
 
 protected:
-  /*************************************
-    Fields setters
-  *************************************/
-  /* Set key */
-  template <typename T>
-  void set_key(T key)
-  {
-    if (_key)
-    {
-      (*_key) = key;
-    }
-  }
-
-  /* Set value */
-  template <typename T>
-  void set_value(T value)
-  {
-    if (_value)
-    {
-      (*_value) = value;
-    }
-  }
-
   /* Set pair data to Fields if success */
   pair_t set_pair(pair_t pair)
   {
     if (pair.status == OK)
     {
-      set_key(pair.key);
-      set_value(pair.value);
+      _key   = pair.key;
+      _value = pair.value;
     }
     return pair;
   }
 
 public:
   /*************************************
-    Constructors
+    Constructors and destructor
   *************************************/
-  Structure(KeyLength key_length, bool is_val_constr = false) : BaseStructureClass()
-  {
-    if (!is_val_constr)
-    {
-      _key = new Key(key_length);
-    }
-  }
+  Structure(KeyLength key_length, bool is_val_constr = false) : BaseStructureClass(),
+                                                                _key(new Key(key_length)) {}
 
-  Structure(ValueLength value_length) : BaseStructureClass()
-  {
-    _value = new Value(value_length);
-  }
+  Structure(ValueLength value_length) : BaseStructureClass(),
+                                        _value(new Value(value_length)) {}
 
-  Structure(KeyLength key_length, ValueLength value_length) : BaseStructureClass()
-  {
-    _key   = new Key(key_length);
-    _value = new Value(value_length);
-  }
-
-  /*************************************
-    Destructor with to_del flags
-  *************************************/
-  ~Structure()
-  {
-    if (to_del_key && _key)
-    {
-      delete _key;
-    }
-    if (to_del_value && _value)
-    {
-      delete _value;
-    }
-  }
+  Structure(KeyLength key_length, ValueLength value_length) : BaseStructureClass(),
+                                                              _key(new Key(key_length)),
+                                                              _value(new Value(value_length)) {}
 
   /*************************************
     Fields interface methods
   *************************************/
-  Key& key()
+  KeyPointer key()
   {
-    to_del_key = false;
-    return (*_key);
+    return _key;
   }
 
-  Value& value()
+  ValuePointer value()
   {
-    to_del_value = false;
-    return (*_value);
+    return _value;
   }
 
 
@@ -165,18 +114,18 @@ public:
   *************************************/
 
   /* Insert */
-  status_t insert(key_t   key, value_t   value, flags_t flags = NO_FLAGS) { set_key(key); set_value(value); return BaseStructureClass::insert(key, value, flags); }
-  status_t insert(KeyData key, value_t   value, flags_t flags = NO_FLAGS) { set_key(key); set_value(value); return BaseStructureClass::insert(*_key, value, flags); }
-  status_t insert(key_t   key, ValueData value, flags_t flags = NO_FLAGS) { set_key(key); set_value(value); return BaseStructureClass::insert(key, *_value, flags); }
-  status_t insert(KeyData key, ValueData value, flags_t flags = NO_FLAGS) { set_key(key); set_value(value); return BaseStructureClass::insert(*_key, *_value, flags); }
+  status_t insert(key_t   key, value_t   value, flags_t flags = NO_FLAGS) { _key = key; _value = value; return BaseStructureClass::insert( key,  value, flags); }
+  status_t insert(KeyData key, value_t   value, flags_t flags = NO_FLAGS) { _key = key; _value = value; return BaseStructureClass::insert(_key,  value, flags); }
+  status_t insert(key_t   key, ValueData value, flags_t flags = NO_FLAGS) { _key = key; _value = value; return BaseStructureClass::insert( key, _value, flags); }
+  status_t insert(KeyData key, ValueData value, flags_t flags = NO_FLAGS) { _key = key; _value = value; return BaseStructureClass::insert(_key, _value, flags); }
 
   /* Delete */
-  status_t del(key_t   key, flags_t flags = NO_FLAGS) { set_key(key); return BaseStructureClass::del(key, flags); }
-  status_t del(KeyData key, flags_t flags = NO_FLAGS) { set_key(key); return BaseStructureClass::del(*_key, flags); }
+  status_t del(key_t   key, flags_t flags = NO_FLAGS) { _key = key; return BaseStructureClass::del( key, flags); }
+  status_t del(KeyData key, flags_t flags = NO_FLAGS) { _key = key; return BaseStructureClass::del(_key, flags); }
 
   /* Search */
-  pair_t search(key_t   key, flags_t flags = P_FLAG) { return set_pair ( BaseStructureClass::search(key, flags) ); }
-  pair_t search(KeyData key, flags_t flags = P_FLAG) { set_key(key); return set_pair ( BaseStructureClass::search(*_key, flags) ); }
+  pair_t search(key_t   key, flags_t flags = P_FLAG) {             return set_pair ( BaseStructureClass::search( key, flags) ); }
+  pair_t search(KeyData key, flags_t flags = P_FLAG) { _key = key; return set_pair ( BaseStructureClass::search(_key, flags) ); }
 
   /* Min */
   pair_t min(flags_t flags = P_FLAG) { return set_pair ( BaseStructureClass::min(flags) ); }
@@ -185,20 +134,20 @@ public:
   pair_t max(flags_t flags = P_FLAG) { return set_pair ( BaseStructureClass::max(flags) ); }
 
   /* Next */
-  pair_t next(key_t   key, flags_t flags = P_FLAG) { return set_pair ( BaseStructureClass::next(key, flags) ); }
-  pair_t next(KeyData key, flags_t flags = P_FLAG) { set_key(key); return set_pair ( BaseStructureClass::next(*_key, flags) ); }
+  pair_t next(key_t   key, flags_t flags = P_FLAG) {             return set_pair ( BaseStructureClass::next( key, flags) ); }
+  pair_t next(KeyData key, flags_t flags = P_FLAG) { _key = key; return set_pair ( BaseStructureClass::next(_key, flags) ); }
 
   /* Prev */
-  pair_t prev(key_t   key, flags_t flags = P_FLAG) { return set_pair ( BaseStructureClass::prev(key, flags) ); }
-  pair_t prev(KeyData key, flags_t flags = P_FLAG) { set_key(key); return set_pair ( BaseStructureClass::prev(*_key, flags) ); }
+  pair_t prev(key_t   key, flags_t flags = P_FLAG) {             return set_pair ( BaseStructureClass::prev( key, flags) ); }
+  pair_t prev(KeyData key, flags_t flags = P_FLAG) { _key = key; return set_pair ( BaseStructureClass::prev(_key, flags) ); }
 
   /* NSM */
-  pair_t nsm(key_t   key, flags_t flags = P_FLAG) { return set_pair ( BaseStructureClass::nsm(key, flags) ); }
-  pair_t nsm(KeyData key, flags_t flags = P_FLAG) { set_key(key); return set_pair ( BaseStructureClass::nsm(*_key, flags) ); }
+  pair_t nsm(key_t   key, flags_t flags = P_FLAG) {             return set_pair ( BaseStructureClass::nsm( key, flags) ); }
+  pair_t nsm(KeyData key, flags_t flags = P_FLAG) { _key = key; return set_pair ( BaseStructureClass::nsm(_key, flags) ); }
 
   /* NGR */
-  pair_t ngr(key_t   key, flags_t flags = P_FLAG) { return set_pair ( BaseStructureClass::ngr(key, flags) ); }
-  pair_t ngr(KeyData key, flags_t flags = P_FLAG) { set_key(key); return set_pair ( BaseStructureClass::ngr(*_key, flags) ); }
+  pair_t ngr(key_t   key, flags_t flags = P_FLAG) {             return set_pair ( BaseStructureClass::ngr( key, flags) ); }
+  pair_t ngr(KeyData key, flags_t flags = P_FLAG) { _key = key; return set_pair ( BaseStructureClass::ngr(_key, flags) ); }
 };
 
 
