@@ -3,7 +3,7 @@
         - declaration of class necessary for data_t fields split
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
-                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
+                  Alexander Kiryanenko <kiryanenkoav@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -38,57 +38,28 @@ private:
   using Length = typename AbstractFields<NameT>::Length;
   using Data   = typename AbstractFields<NameT>::Data;
   Length length;       // Length
-  Data   *data = NULL; // Data
-
-protected:
-
-  /* Check for data instance */
-  inline void check_data()
-  {
-    if (!data)
-    {
-      throw NoFieldsData();
-    }
-  }
-
-  /* Delete Data instance */
-  inline void clear_data()
-  {
-    if (data)
-    {
-      delete data;
-    }
-  }
+  Data   data; // Data
 
 public:
   /* Constructor */
   Fields(Length fields_length): AbstractFields<NameT>(), length(fields_length)
   {
-    data = new Data();
     for ( auto ex : length )
     {
-      data->push( {ex.name, 0} );
+      data.push( {ex.name, 0} );
     }
-  }
-  
-  /* Destructor */
-  ~Fields()
-  { 
-    clear_data();
   }
 
   /* data_t transform operator */
   operator data_t() override
   {
-    check_data();
-
     data_t ret = 0;
     u8 shift   = 0;
     for(auto ex : length)
     {
       try
       {
-        ret = ret | ( ( (*data)[ex.name] & Length::mask(ex.length) ) << shift );
+        ret = ret | ( ( data[ex.name] & Length::mask(ex.length) ) << shift );
       }
       catch(DidNotFoundDataByName<NameT>&) {}
       shift += ex.length;
@@ -99,15 +70,14 @@ public:
   /* Set data_t for fields data */
   Fields& operator= (data_t fields_data) override
   {
-    clear_data();
-    data = new Data();
+    data.clear();
 
     u8 shift = 0;
     for ( auto ex : length )
     {
       data_t mask = Length::mask(ex.length);
       data_t flow = ( fields_data >> shift ) & mask;
-      data->push( {ex.name, flow} );
+      data.push( {ex.name, flow} );
       shift += ex.length;
     }
 
@@ -117,24 +87,23 @@ public:
   /* Set Data for fields data */
   Fields& operator= (Data fields_data) override
   {
-    clear_data();
-    data = new Data();
-    
+    data.clear();
+
     for ( auto ex : fields_data )
     {
-      data_t flow = ex.data & length[ex.name];
-      data->push( {ex.name, flow} );
+      data_t flow = ex.data & length.fieldMask(ex.name);
+      data.push( {ex.name, flow} );
     }
 
     return *this;
   }
 
   /* Subscript operator */
-  data_t& operator[](NameT name) override { check_data(); return (*data)[name]; }
+  data_t& operator[](NameT name) override { return data[name]; }
 
   /* Friends functions used int foreach cycle */
-  friend auto begin(Fields<NameT>& fields) { fields.check_data(); return begin(*fields.data); }
-  friend auto end(Fields<NameT>&   fields) { fields.check_data(); return end(*fields.data);   }
+  friend auto begin(Fields<NameT>& fields) { return begin(fields.data); }
+  friend auto end(Fields<NameT>&   fields) { return end(fields.data);   }
 
 };
 

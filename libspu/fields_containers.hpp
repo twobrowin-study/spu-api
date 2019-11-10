@@ -3,7 +3,7 @@
         - presents fields_length and fields_data classes
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
-                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
+                  Alexander Kiryanenko <kiryanenkoav@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -73,6 +73,11 @@ protected:
     cont_vec.push_back(addict);
   }
 
+  inline void clear()
+  {
+    cont_vec.clear();
+  }
+
 private:
   ContentVector cont_vec; // Content vector
   std::string ClName;     // Class name to inform DidNotFoundDataByName error
@@ -100,10 +105,11 @@ class FieldsLength : public FieldsContainer<NameT, u8>
 private:
   /* Content length types */
   typedef FieldsContainer<NameT, u8> Parent;
+
+public:
   using LengthStruct = typename Parent::ContentStruct;
   using LengthVector = typename Parent::ContentVector;
 
-public:
   /* Constructors */
   FieldsLength() : Parent("FieldsLength") {}
   FieldsLength(LengthVector length_vector) : Parent(length_vector, "FieldsLength") {}
@@ -115,9 +121,10 @@ public:
     return ~( (-1) << length );
   }
 
-  /* Subscript operators witch returns mask */
-  const data_t operator[](NameT name) const { return mask( Parent::find_data_by_name(name) ); }
-        data_t operator[](NameT name)       { return mask( Parent::find_data_by_name(name) ); }
+  data_t fieldMask(NameT name) { return mask( Parent::find_data_by_name(name) ); }
+
+  const u8& operator[](NameT name) const { return Parent::find_data_by_name(name); }
+        u8& operator[](NameT name)       { return Parent::find_data_by_name(name); }
 };
 
 
@@ -142,6 +149,11 @@ public:
   void push(DataStruct addict)
   {
     Parent::push(addict);
+  }
+
+  void clear()
+  {
+    Parent::clear();
   }
 
   /* Subscript operators */
