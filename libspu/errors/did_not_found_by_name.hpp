@@ -49,84 +49,84 @@ struct DidNotFoundDataByName : public std::exception
 
 /* DidNotFoundDataByName with std::string names */
 template <>
-std::string DidNotFoundDataByName<std::string>::str_what_field_name(std::string exception_field_name)
+inline std::string DidNotFoundDataByName<std::string>::str_what_field_name(std::string exception_field_name)
 {
   return "'" + exception_field_name + "'";
 }
 
 /* DidNotFoundDataByName with char names */
 template <>
-std::string DidNotFoundDataByName<char>::str_what_field_name(char exception_field_name)
+inline std::string DidNotFoundDataByName<char>::str_what_field_name(char exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with short names */
 template <>
-std::string DidNotFoundDataByName<short>::str_what_field_name(short exception_field_name)
+inline std::string DidNotFoundDataByName<short>::str_what_field_name(short exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with int names */
 template <>
-std::string DidNotFoundDataByName<int>::str_what_field_name(int exception_field_name)
+inline std::string DidNotFoundDataByName<int>::str_what_field_name(int exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with long names */
 template <>
-std::string DidNotFoundDataByName<long>::str_what_field_name(long exception_field_name)
+inline std::string DidNotFoundDataByName<long>::str_what_field_name(long exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with long long names */
 template <>
-std::string DidNotFoundDataByName<long long>::str_what_field_name(long long exception_field_name)
+inline std::string DidNotFoundDataByName<long long>::str_what_field_name(long long exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with unsigned short names */
 template <>
-std::string DidNotFoundDataByName<unsigned char>::str_what_field_name(unsigned char exception_field_name)
+inline std::string DidNotFoundDataByName<unsigned char>::str_what_field_name(unsigned char exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with unsigned char names */
 template <>
-std::string DidNotFoundDataByName<unsigned short>::str_what_field_name(unsigned short exception_field_name)
+inline std::string DidNotFoundDataByName<unsigned short>::str_what_field_name(unsigned short exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with unsigned int names */
 template <>
-std::string DidNotFoundDataByName<unsigned int>::str_what_field_name(unsigned int exception_field_name)
+inline std::string DidNotFoundDataByName<unsigned int>::str_what_field_name(unsigned int exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with unsigned long names */
 template <>
-std::string DidNotFoundDataByName<unsigned long>::str_what_field_name(unsigned long exception_field_name)
+inline std::string DidNotFoundDataByName<unsigned long>::str_what_field_name(unsigned long exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with unsigned long long names */
 template <>
-std::string DidNotFoundDataByName<unsigned long long>::str_what_field_name(unsigned long long exception_field_name)
+inline std::string DidNotFoundDataByName<unsigned long long>::str_what_field_name(unsigned long long exception_field_name)
 {
   return "'" + std::to_string(exception_field_name) + "'";
 }
 
 /* DidNotFoundDataByName with Unknown names */
 template <typename NameT>
-std::string DidNotFoundDataByName<NameT>::str_what_field_name(NameT exception_field_name)
+inline std::string DidNotFoundDataByName<NameT>::str_what_field_name(NameT exception_field_name)
 {
   return "'Unknown'";
 }
