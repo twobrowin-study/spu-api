@@ -42,8 +42,6 @@ bool operator<= (const data_t &c1, const data_t &c2);
 /* Arithmetic */
 data_t       operator+ (const data_t &c1, const data_t &c2);
 data_t       operator- (const data_t &c1, const data_t &c2);
-data_t       operator+ (const data_t &c1, int c2);
-data_t       operator- (const data_t &c1, int c2);
 
 /* Increment/Decrement */
 data_t &     operator++ (data_t &c1);
@@ -105,6 +103,10 @@ template <typename T> T   andContainers (const T &c1, const T &c2);
 template <typename T> T   orContainers  (T &c1, T &c2);
 template <typename T> T   xorContainers (T &c1, T &c2);
 template <typename T> T   notContainers (T &c1);
+
+
+template<typename T> data_t operator+ (data_t c, T num) { const data_t c1 = c, c2 = num; return addContainers(c1, c2); }
+template<typename T> data_t operator- (data_t c, T num) { const data_t c1 = c, c2 = num; return subContainers(c1, c2); }
 
 } /* namespace SPU */
 
