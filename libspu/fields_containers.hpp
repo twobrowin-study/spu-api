@@ -67,6 +67,18 @@ protected:
     throw DidNotFoundDataByName<NameT>(ClName, name);
   }
 
+  inline const ContentT& find_data_by_name(NameT name) const
+  {
+    for (auto& ex : cont_vec)
+    {
+      if (ex.name == name)
+      {
+        return ex.cont;
+      }
+    }
+    throw DidNotFoundDataByName<NameT>(ClName, name);
+  }
+
   /* Push to add data */
   inline void push(ContentStruct addict)
   {
@@ -121,7 +133,7 @@ public:
     return ~( (-1) << length );
   }
 
-  data_t fieldMask(NameT name) { return mask( Parent::find_data_by_name(name) ); }
+  data_t fieldMask(NameT name) const { auto d = Parent::find_data_by_name(name); return mask(d); }
 
   const u8& operator[](NameT name) const { return Parent::find_data_by_name(name); }
         u8& operator[](NameT name)       { return Parent::find_data_by_name(name); }

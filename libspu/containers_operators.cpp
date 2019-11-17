@@ -3,7 +3,7 @@
         - all those operator for gsid_t and data_t
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
-                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
+                  Alexander Kiryanenko <kiryanenkoav@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -36,9 +36,39 @@ bool operator>= (const data_t &c1, const data_t &c2) { return cmpContainers(c1, 
 bool operator<  (const data_t &c1, const data_t &c2) { return cmpContainers(c1, c2) <  0; }
 bool operator<= (const data_t &c1, const data_t &c2) { return cmpContainers(c1, c2) <= 0; }
 
+bool operator== (const data_t &c1, u8 num) { const data_t c2 = num; return cmpContainers(c1, c2) == 0; }
+bool operator!= (const data_t &c1, u8 num) { const data_t c2 = num; return cmpContainers(c1, c2) != 0; }
+bool operator>  (const data_t &c1, u8 num) { const data_t c2 = num; return cmpContainers(c1, c2) >  0; }
+bool operator>= (const data_t &c1, u8 num) { const data_t c2 = num; return cmpContainers(c1, c2) >= 0; }
+bool operator<  (const data_t &c1, u8 num) { const data_t c2 = num; return cmpContainers(c1, c2) <  0; }
+bool operator<= (const data_t &c1, u8 num) { const data_t c2 = num; return cmpContainers(c1, c2) <= 0; }
+
+bool operator== (const data_t &c1, unsigned int num) { const data_t c2 = num; return cmpContainers(c1, c2) == 0; }
+bool operator!= (const data_t &c1, unsigned int num) { const data_t c2 = num; return cmpContainers(c1, c2) != 0; }
+bool operator>  (const data_t &c1, unsigned int num) { const data_t c2 = num; return cmpContainers(c1, c2) >  0; }
+bool operator>= (const data_t &c1, unsigned int num) { const data_t c2 = num; return cmpContainers(c1, c2) >= 0; }
+bool operator<  (const data_t &c1, unsigned int num) { const data_t c2 = num; return cmpContainers(c1, c2) <  0; }
+bool operator<= (const data_t &c1, unsigned int num) { const data_t c2 = num; return cmpContainers(c1, c2) <= 0; }
+
+bool operator== (const data_t &c1, unsigned long num) { const data_t c2 = num; return cmpContainers(c1, c2) == 0; }
+bool operator!= (const data_t &c1, unsigned long num) { const data_t c2 = num; return cmpContainers(c1, c2) != 0; }
+bool operator>  (const data_t &c1, unsigned long num) { const data_t c2 = num; return cmpContainers(c1, c2) >  0; }
+bool operator>= (const data_t &c1, unsigned long num) { const data_t c2 = num; return cmpContainers(c1, c2) >= 0; }
+bool operator<  (const data_t &c1, unsigned long num) { const data_t c2 = num; return cmpContainers(c1, c2) <  0; }
+bool operator<= (const data_t &c1, unsigned long num) { const data_t c2 = num; return cmpContainers(c1, c2) <= 0; }
+
 /* Arithmetic */
 data_t       operator+ (const data_t &c1, const data_t &c2) { return addContainers(c1, c2); }
 data_t       operator- (const data_t &c1, const data_t &c2) { return subContainers(c1, c2); }
+
+data_t       operator+ (const data_t &c1, u8 num) { const data_t c2 = num; return addContainers(c1, c2); }
+data_t       operator- (const data_t &c1, u8 num) { const data_t c2 = num; return subContainers(c1, c2); }
+data_t       operator+ (const data_t &c1, unsigned int num) { const data_t c2 = num; return addContainers(c1, c2); }
+data_t       operator- (const data_t &c1, unsigned int num) { const data_t c2 = num; return subContainers(c1, c2); }
+data_t       operator+ (const data_t &c1, unsigned long num) { const data_t c2 = num; return addContainers(c1, c2); }
+data_t       operator- (const data_t &c1, unsigned long num) { const data_t c2 = num; return subContainers(c1, c2); }
+data_t       operator+ (const data_t &c1, int num) { return num >= 0 ? c1 + (unsigned int) num : c1 - (unsigned int) -num; }
+data_t       operator- (const data_t &c1, int num) { return num >= 0 ? c1 - (unsigned int) num : c1 + (unsigned int) -num; }
 
 /* Increment/Decrement */
 data_t &     operator++ (data_t &c1)      { return incContainer(c1); }

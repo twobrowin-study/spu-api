@@ -3,7 +3,7 @@
         - all those operator for gsid_t and data_t
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
-                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
+                  Alexander Kiryanenko <kiryanenkoav@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -39,9 +39,38 @@ bool operator>= (const data_t &c1, const data_t &c2);
 bool operator<  (const data_t &c1, const data_t &c2);
 bool operator<= (const data_t &c1, const data_t &c2);
 
+bool operator== (const data_t &c1, u8 num);
+bool operator!= (const data_t &c1, u8 num);
+bool operator>  (const data_t &c1, u8 num);
+bool operator>= (const data_t &c1, u8 num);
+bool operator<  (const data_t &c1, u8 num);
+bool operator<= (const data_t &c1, u8 num);
+
+bool operator== (const data_t &c1, unsigned int num);
+bool operator!= (const data_t &c1, unsigned int num);
+bool operator>  (const data_t &c1, unsigned int num);
+bool operator>= (const data_t &c1, unsigned int num);
+bool operator<  (const data_t &c1, unsigned int num);
+bool operator<= (const data_t &c1, unsigned int num);
+
+bool operator== (const data_t &c1, unsigned long num);
+bool operator!= (const data_t &c1, unsigned long num);
+bool operator>  (const data_t &c1, unsigned long num);
+bool operator>= (const data_t &c1, unsigned long num);
+bool operator<  (const data_t &c1, unsigned long num);
+bool operator<= (const data_t &c1, unsigned long num);
+
 /* Arithmetic */
 data_t       operator+ (const data_t &c1, const data_t &c2);
 data_t       operator- (const data_t &c1, const data_t &c2);
+data_t       operator+ (const data_t &c1, unsigned int c2);
+data_t       operator- (const data_t &c1, unsigned int c2);
+data_t       operator+ (const data_t &c1, unsigned long c2);
+data_t       operator- (const data_t &c1, unsigned long c2);
+data_t       operator+ (const data_t &c1, int c2);
+data_t       operator- (const data_t &c1, int c2);
+data_t       operator+ (const data_t &c1, long c2);
+data_t       operator- (const data_t &c1, long c2);
 
 /* Increment/Decrement */
 data_t &     operator++ (data_t &c1);
