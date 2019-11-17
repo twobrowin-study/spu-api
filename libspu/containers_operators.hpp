@@ -32,16 +32,45 @@ namespace SPU
 ***************************************/ 
 
 /* Compare */
-bool operator== (const data_t &c1, data_t c2);
-bool operator!= (const data_t &c1, data_t c2);
-bool operator>  (const data_t &c1, data_t c2);
-bool operator>= (const data_t &c1, data_t c2);
-bool operator<  (const data_t &c1, data_t c2);
-bool operator<= (const data_t &c1, data_t c2);
+bool operator== (const data_t &c1, const data_t &c2);
+bool operator!= (const data_t &c1, const data_t &c2);
+bool operator>  (const data_t &c1, const data_t &c2);
+bool operator>= (const data_t &c1, const data_t &c2);
+bool operator<  (const data_t &c1, const data_t &c2);
+bool operator<= (const data_t &c1, const data_t &c2);
+
+bool operator== (const data_t &c1, u8 num);
+bool operator!= (const data_t &c1, u8 num);
+bool operator>  (const data_t &c1, u8 num);
+bool operator>= (const data_t &c1, u8 num);
+bool operator<  (const data_t &c1, u8 num);
+bool operator<= (const data_t &c1, u8 num);
+
+bool operator== (const data_t &c1, unsigned int num);
+bool operator!= (const data_t &c1, unsigned int num);
+bool operator>  (const data_t &c1, unsigned int num);
+bool operator>= (const data_t &c1, unsigned int num);
+bool operator<  (const data_t &c1, unsigned int num);
+bool operator<= (const data_t &c1, unsigned int num);
+
+bool operator== (const data_t &c1, unsigned long num);
+bool operator!= (const data_t &c1, unsigned long num);
+bool operator>  (const data_t &c1, unsigned long num);
+bool operator>= (const data_t &c1, unsigned long num);
+bool operator<  (const data_t &c1, unsigned long num);
+bool operator<= (const data_t &c1, unsigned long num);
 
 /* Arithmetic */
-data_t       operator+ (const data_t &c1, data_t c2);
-data_t       operator- (const data_t &c1, data_t c2);
+data_t       operator+ (const data_t &c1, const data_t &c2);
+data_t       operator- (const data_t &c1, const data_t &c2);
+data_t       operator+ (const data_t &c1, unsigned int c2);
+data_t       operator- (const data_t &c1, unsigned int c2);
+data_t       operator+ (const data_t &c1, unsigned long c2);
+data_t       operator- (const data_t &c1, unsigned long c2);
+data_t       operator+ (const data_t &c1, int c2);
+data_t       operator- (const data_t &c1, int c2);
+data_t       operator+ (const data_t &c1, long c2);
+data_t       operator- (const data_t &c1, long c2);
 
 /* Increment/Decrement */
 data_t &     operator++ (data_t &c1);
