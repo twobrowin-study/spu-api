@@ -45,9 +45,9 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:zoom="0.44980377"
-     inkscape:cx="-344.71382"
-     inkscape:cy="110.31908"
+     inkscape:zoom="1.7992151"
+     inkscape:cx="622.25411"
+     inkscape:cy="463.1865"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -293,17 +293,6 @@ class AbstractFields-->
        x="532.5"
        y="-41"
        transform="matrix(1,0,0,-1,8,-152)" />
-    <circle
-       cx="555.5"
-       cy="127"
-       style="fill:#add1b2;stroke:#a80036;stroke-width:1"
-       id="ellipse57"
-       r="11"
-       transform="scale(1,-1)" />
-    <path
-       d="m 558.4688,-121.3594 q -0.5782,0.2969 -1.2188,0.4453 -0.6406,0.1485 -1.3437,0.1485 -2.5,0 -3.8204,-1.6485 -1.3203,-1.6484 -1.3203,-4.7734 0,-3.125 1.3203,-4.7812 1.3204,-1.6563 3.8204,-1.6563 0.7031,0 1.3515,0.1563 0.6485,0.1562 1.211,0.4531 v 2.7187 q -0.625,-0.5781 -1.2188,-0.8515 -0.5937,-0.2735 -1.2187,-0.2735 -1.3438,0 -2.0313,1.0703 -0.6875,1.0704 -0.6875,3.1641 0,2.0938 0.6875,3.1641 0.6875,1.0703 2.0313,1.0703 0.625,0 1.2187,-0.2735 0.5938,-0.2734 1.2188,-0.8515 z"
-       id="path59"
-       inkscape:connector-curvature="0" />
     <text
        font-size="12"
        lengthAdjust="spacingAndGlyphs"
@@ -424,9 +413,9 @@ link StructureVoid to BaseStructure-->
     <!--MD5=[3272c5c16cdebddff4f5b50632128da5]
 link StructureVoid to Simulator-->
     <path
-       d="m 157.97866,141.41766 c 15.9436,-12.9806 38.8151,-31.6016 57.9244,-47.1596"
+       d="m 163.50807,137.28428 c 14.4295,-11.85255 35.12899,-28.85535 52.42356,-43.061329"
        id="StructureVoid-&gt;Simulator"
-       style="fill:none;stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+       style="fill:none;stroke:#a80036;stroke-width:0.90905714;stroke-dasharray:6.36340001, 6.36340001"
        inkscape:connector-curvature="0" />
     <polygon
        points="248.766,119.6508 228.8367,126.8498 239.9268,108.794 "
@@ -443,9 +432,9 @@ link Structure to BaseStructure-->
     <!--MD5=[7235b6c8690a30d8496216866fa9b935]
 link Structure to Simulator-->
     <path
-       d="M 474.5623,139.1185 C 406.8411,126.8661 321.0469,110.0898 287,98.1195 279.3279,95.4221 271.4343,92.0119 263.8646,88.3844"
+       d="M 467.29933,136.78974 C 401.9087,125.37808 319.06702,109.75294 286.19181,98.604028 278.78374,96.091721 271.1618,92.915524 263.8526,89.536937"
        id="Structure-&gt;Simulator"
-       style="fill:none;stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+       style="fill:none;stroke:#a80036;stroke-width:0.94832945;stroke-dasharray:6.63830614, 6.63830614"
        inkscape:connector-curvature="0" />
     <polygon
        points="257.0113,123.9882 236.0252,126.9178 250.604,111.5405 "
@@ -550,15 +539,25 @@ Default Encoding: UTF-8
 Language: ru
 Country: RU
 -->
-    <path
-       d="M 275.9515,4.4523 C 256.10334,27.14315 230.34928,56.58597 212.89855,76.53611"
-       id="AbstractStructure&lt;-BaseStructure-3"
-       style="fill:none;stroke:#a80036;stroke-width:0.72306967"
-       inkscape:connector-curvature="0" />
     <polygon
        points="180.6243,67.0252 201.7679,68.4223 196.2818,81.3026 "
        style="fill:none;stroke:#a80036;stroke-width:1"
        id="polygon86-6"
        transform="matrix(-0.90067666,0.43449,0.43449,0.90067666,422.72168,-149.52278)" />
+    <path
+       d="M 275.98605,4.1488068 C 262.40649,18.335733 244.78627,36.744165 232.84696,49.217526"
+       id="AbstractStructure&lt;-BaseStructure-3"
+       style="fill:none;stroke:#a80036;stroke-width:0.47291353"
+       inkscape:connector-curvature="0" />
+    <circle
+       cx="554.93573"
+       cy="-127.0559"
+       style="fill:#a9dcdf;stroke:#a80036;stroke-width:1"
+       id="ellipse71-6"
+       r="11" />
+    <path
+       d="m 555.04512,-131.71211 -1.1563,5.0781 h 2.3282 z m -1.4844,-2.2344 h 2.9844 l 3.3594,12.3906 h -2.4532 l -0.7656,-3.0625 h -3.2812 l -0.75,3.0625 h -2.4375 z"
+       id="path73-7"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
