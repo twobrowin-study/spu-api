@@ -129,7 +129,7 @@ gsid_t operator~ (const gsid_t &c1)                   { return notContainers(c1)
 template<class T>
 int cmpContainers (T &c1, T &c2)
 {
-  for(u8 i = 0; i < arraySize(c1); i++)
+  for(int i = arraySize(c1) - 1; i >= 0; --i)
   {
     if (c1[i] != c2[i])
     {
@@ -144,9 +144,11 @@ template <typename T>
 T addContainers (T &c1, T &c2)
 {
   typename std::remove_const<T>::type ret = {0};
+  u8 overflow = 0;
   for(u8 i = 0; i < arraySize(c1); i++)
   {
-    ret[i] = c1[i] + c2[i];
+    u8 _overflow = __builtin_add_overflow(c1[i], c2[i], &ret[i]);
+    overflow = __builtin_add_overflow(ret[i], overflow, &ret[i]) || _overflow;
   }
   return ret;
 }
@@ -156,27 +158,37 @@ template <typename T>
 T subContainers (T &c1, T &c2)
 {
   typename std::remove_const<T>::type ret = {0};
+  u8 overflow = 0;
   for (u8 i = 0; i < arraySize(c1); i++)
   {
-    ret[i] = c1[i] - c2[i];
+    u8 _overflow = __builtin_sub_overflow(c1[i], c2[i], &ret[i]);
+    overflow = __builtin_sub_overflow(ret[i], overflow, &ret[i]) || _overflow;
   }
   return ret;
 }
 
 /* Prefix increment */
 template <class T>
-T & incContainer (T &c1)
+T & incContainer (T &c)
 {
-  ++c1[0]; // FIXME imitates only for littles byte
-  return c1;
+  u8 overflow = __builtin_add_overflow(c[0], 1, &c[0]);
+  for(u8 i = 1; overflow && i < arraySize(c); ++i)
+  {
+    overflow = __builtin_add_overflow(c[i], overflow, &c[i]);
+  }
+  return c;
 }
 
 /* Prefix decrement */
 template <class T>
-T & decContainer (T &c1)
+T & decContainer (T &c)
 {
-  --c1[0]; // FIXME imitates only for littles byte
-  return c1;
+  u8 overflow = __builtin_sub_overflow(c[0], 1, &c[0]);
+  for(u8 i = 1; overflow && i < arraySize(c); ++i)
+  {
+    overflow = __builtin_sub_overflow(c[i], overflow, &c[i]);
+  }
+  return c;
 }
 
 /* AND bit by bit */
