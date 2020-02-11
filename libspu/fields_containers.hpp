@@ -128,9 +128,18 @@ public:
   FieldsLength(std::initializer_list<LengthStruct> length_initializer_list) : Parent(length_initializer_list, "FieldsLength") {}
 
   /* Mask creator */
-  inline static data_t mask(u8& length)
+  inline static data_t mask(u8 length)
   {
-    return ~( (-1) << length );
+    data_t res = {0};
+    auto n = length / 32;
+    for (auto i = 0; i < n; ++i) {
+      res[i] = -1;
+    }
+    auto mod = length % 32;
+    if (mod) {
+      res[n] = ~((-1) << mod);
+    }
+    return res;
   }
 
   data_t fieldMask(NameT name) const { auto d = Parent::find_data_by_name(name); return mask(d); }
