@@ -4,7 +4,7 @@
         - based on map with O(log2(n)) difficulty
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
-                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
+                  Alexander Kiryanenko <kiryanenkoav@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -67,7 +67,7 @@ protected:
 
 public:
     Simulator();
-    ~Simulator();
+    ~Simulator() override;
 
     u32 get_power() override;
 

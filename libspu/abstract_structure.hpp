@@ -6,7 +6,7 @@
         - structure is a set of key-value pairs
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
-                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
+                  Alexander Kiryanenko <kiryanenkoav@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -56,6 +56,8 @@ protected:
   virtual dels_rslt_t dels() = 0;
 
 public:
+  virtual ~AbstractStructure() = default;
+
   /* Helpers */
   virtual u32 get_power() = 0;
 

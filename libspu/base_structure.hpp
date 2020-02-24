@@ -6,7 +6,7 @@
         - this class defines and implements all structure methods without any key portion mechanism
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
-                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
+                  Alexander Kiryanenko <kiryanenkoav@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -49,7 +49,7 @@ protected:
 
 public:
   BaseStructure();
-  ~BaseStructure();
+  ~BaseStructure() override;
 
   u32 get_power() override;
 
