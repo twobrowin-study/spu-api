@@ -3,7 +3,7 @@
         - SPU simulator implementation
 
   Copyright 2019  Dubrovin Egor <dubrovin.en@ya.ru>
-                  Aleksandr Kiryanenko <akiryanenko@mail.ru>
+                  Alexander Kiryanenko <kiryanenkoav@mail.ru>
                   Alex Popov <alexpopov@bmstu.ru>
                   Bauman Moscow State Technical University
 
@@ -148,37 +148,24 @@ pair_t Simulator::next(key_t key, flags_t flags)
 pair_t Simulator::prev(key_t key, flags_t flags)
 {
   auto it = _data->find(key);
-  if (it != _data->end())
-  {
-    --it;
-    if (it != _data->end())
-    {
-      return { it->first, it->second };
-    }
-    else
-    {
-      return { ERR };
-    }
-  }
-  else
+  if (it == _data->end() || it == _data->begin())
   {
     return { ERR };
   }
+  --it;
+  return { it->first, it->second };
 }
 
 /* Next Smaller command execution */
 pair_t Simulator::nsm(key_t key, flags_t flags)
 {
   auto it = _data->lower_bound(key);
-  --it;
-  if (it != _data->end())
-  {
-    return { it->first, it->second };
-  }
-  else
+  if (_data->empty() || it == _data->begin())
   {
     return { ERR };
   }
+  --it;
+  return { it->first, it->second };
 }
 
 /* Next Greater command execution */
