@@ -85,8 +85,8 @@ data_t operator^ (const data_t &c1, const data_t &c2);
 data_t operator~ (const data_t &c1);
 
 /* Shifts */
-data_t operator<< (const data_t &cont, const u8 &shift);
-data_t operator>> (const data_t &cont, const u8 &shift);
+data_t operator<< (const data_t &cont, u8 shift);
+data_t operator>> (const data_t &cont, u8 shift);
 
 
 

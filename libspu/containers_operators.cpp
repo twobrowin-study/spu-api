@@ -246,92 +246,47 @@ T notContainers (T &c1)
 ***************************************/
 
 /* Shift operator - iterates and shifts - that's it */
-data_t operator<< (const data_t &cont, const u8 &shift)
+data_t operator<< (const data_t &cont, u8 shift)
 {
-  if(shift > 0)
-  {
-    data_t work_cont = cont;
-    u8 work_shift    = shift;
-    u8 part_bit_size = sizeof(*cont.cont)*8;
-
-    /* Shift array element while shift more than one element size */
-    u8 idx = 0;
-    while(work_shift >= part_bit_size)
-    {
-      data_t unshifted_cont = work_cont;
-      work_cont[idx++] = 0;
-      for(u8 i=idx; i<SPU_WEIGHT; i++)
-      {
-        work_cont[i] = unshifted_cont[i-1];
-      }
-      work_shift -= part_bit_size;
-    }
-
-    if (shift == 0)
-    {
-      return work_cont;
-    }
-
-    /* Shift inside every element of array */
-    data_t ret     = 0;
-    u8 shifted_out = 0;
-    for(u8 i=0; i<SPU_WEIGHT; i++)
-    {
-      ret[i] = (work_cont[i] << work_shift) | shifted_out;
-      shifted_out = work_cont[i] >> (part_bit_size - work_shift);
-    }
-
-    return ret;
-  }
-  else
-  {
+  if (shift == 0) {
     return cont;
   }
+  if (shift > sizeof(data_t) * 8) {
+    return {0};
+  }
+
+  data_t res = {0};
+  auto div_shift = shift / 32;
+  auto mod_shift = shift % 32;
+  u32 prev_unshift = 0;
+  for (u8 i = 0; i < arraySize(cont) - div_shift; ++i)
+  {
+    res[i + div_shift] = (cont[i] << mod_shift) | prev_unshift;
+    prev_unshift = cont[i] >> 32 - mod_shift;
+  }
+  return res;
 }
 
 /* Shift operator - iterates and shifts - that's it */
-data_t operator>> (const data_t &cont, const u8 &shift)
+data_t operator>> (const data_t &cont, u8 shift)
 {
-  if(shift > 0)
-  {
-    data_t work_cont = cont;
-    u8 work_shift    = shift;
-    u8 part_bit_size = sizeof(*cont.cont)*8;
-
-    /* Shift array element while shift more than one element size */
-    u8 idx = SPU_WEIGHT-1;
-    while(work_shift >= part_bit_size)
-    {
-      data_t unshifted_cont = work_cont;
-      work_cont[idx] = 0;
-      for(u8 i=idx; i>0; i--)
-      {
-        work_cont[i-1] = unshifted_cont[i];
-      }
-      work_shift -= part_bit_size;
-      idx--;
-    }
-
-    if (shift == 0)
-    {
-      return work_cont;
-    }
-
-    /* Shift inside every element of array */
-    data_t ret     = 0;
-    u8 shifted_out = 0;
-    for(u8 i=SPU_WEIGHT; i>0; i--)
-    {
-      ret[i-1] = (work_cont[i-1] >> work_shift) | shifted_out;
-      shifted_out = work_cont[i-1] << (part_bit_size - work_shift);
-    }
-
-    return ret;
-  }
-  else
-  {
+  if (shift == 0) {
     return cont;
   }
+  if (shift > sizeof(data_t) * 8) {
+    return {0};
+  }
+
+  data_t res = {0};
+  auto div_shift = shift / 32;
+  auto mod_shift = shift % 32;
+  u32 prev_unshift = 0;
+  for (u8 i = arraySize(cont); i != div_shift; --i)
+  {
+    res[i - div_shift - 1] = (cont[i - 1] >> mod_shift) | prev_unshift;
+    prev_unshift = cont[i - 1] << 32 - mod_shift;
+  }
+  return res;
 }
 
 } /* namespace SPU */
